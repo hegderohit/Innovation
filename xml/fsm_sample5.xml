@@ -16,8 +16,8 @@
     <state id="9" sw="1" sf="0" sc="black" transparency="none" fillcolor="#ffffff" m="R"
         description="State 9" > </state>
     
-    <!--<state id="6" sw="1" sf="0" sc="black" transparency="none" fillcolor="#ffffff" m="R"
-        description="State 6" > </state>-->
+    <!--<state id="10" sw="1" sf="0" sc="black" transparency="none" fillcolor="#ffffff" m="R"
+        description="State 10" > </state>-->
     
    
     <marker id="M1" x="0" y="0" w="0" h="0" sw="1" sf="0" sc="#000000" transparency="none"

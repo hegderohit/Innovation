@@ -844,14 +844,29 @@
 
 -->
 			<!--  step 1   : get  states  -->
-			<xsl:variable name="statesl" select="./state[position()&lt; ($leftcount+1)]"/>
-			<xsl:variable name="statesr" select="./state[position()&gt; ($rightcount+1)]"/>
+			<xsl:variable name="statesl" select="./state[position()&lt; ($leftcount+1)]"/>			
+			<xsl:variable name="statesr" select="./state[position()&gt; ($rightcount)]"/>
+			
+			<xsl:variable name="statesro" select="./state[position()&gt; ($rightcount+1)]"/>
+				<!--<xsl:if test="(($statecount mod 2)=0)">
+					<xsl:value-of />
+				</xsl:if>
+				<xsl:if test="(($statecount mod 2)!=0)">
+					<xsl:value-of select="./state[position()&gt; ($rightcount+1)]"/>
+				</xsl:if>
+				
+			</xsl:variable> -->
+			
 			<!-- steep 2 : loop  throuhg   states  -->
 			<!--  assign x -->
 			<!--  assign y  -->
 			<xsl:message>
 				<xsl:for-each select="$statesr"> 
 					testr: <xsl:value-of select="./@id"/>
+				</xsl:for-each>
+				
+				<xsl:for-each select="$statesro"> 
+					testro: <xsl:value-of select="./@id"/>
 				</xsl:for-each>
 				
 				<xsl:for-each select="$statesl"> 
@@ -907,52 +922,104 @@
 						</xsl:attribute>
 					</rec>
 				</xsl:for-each>
-				<xsl:for-each select="$statesr">
-					<rec>
-						<xsl:attribute name="stateid_1">
-							<xsl:value-of select="@id1"/>
-						</xsl:attribute>
-						<xsl:attribute name="rank">
-							<xsl:value-of select="position()"/>
-						</xsl:attribute>
-						<xsl:attribute name="side">
-							<xsl:value-of select="2"/>
-						</xsl:attribute>
-						<xsl:attribute name="text_description">
-							<xsl:value-of select="@description"/>
-						</xsl:attribute>
-						<xsl:attribute name="text_id">
-							<xsl:value-of select="@descriptionid"/>
-						</xsl:attribute>
-						<xsl:attribute name="stateid">
-							<xsl:value-of select="@id"/>
-						</xsl:attribute>
-						<xsl:attribute name="strokecolor">
-							<xsl:value-of select="@sc"/>
-						</xsl:attribute>
-						<xsl:attribute name="strokewidth">
-							<xsl:value-of select="@sw"/>
-						</xsl:attribute>
-						<xsl:attribute name="px">
-							<xsl:value-of select="$P2 - ($actualW div 2)"/>
-						</xsl:attribute>
-						<xsl:attribute name="py">
-							<xsl:if test="position() = 1">	
-								<xsl:value-of select="(($workingH * position()) - ($actualH div 2))"/>
-							</xsl:if>
-							<xsl:if test="position()&gt; 1">	
-								<xsl:value-of select="((($workingH * position())+($actualLh * (position() - 1)) )  - ($actualH div 2))"/>
-							</xsl:if>
-						</xsl:attribute>
-						<xsl:attribute name="h">
-							<xsl:value-of select="$actualH"/>
-						</xsl:attribute>
-						<xsl:attribute name="w">
-							<xsl:value-of select="$actualW"/>
-						</xsl:attribute>
-					</rec>
-				</xsl:for-each>
-			</xsl:variable>
+				<xsl:choose>
+					<xsl:when test="($statecount mod 2)=0">
+						<xsl:for-each select="$statesr">
+							<rec>
+								<xsl:attribute name="stateid_1">
+									<xsl:value-of select="@id1"/>
+								</xsl:attribute>
+								<xsl:attribute name="rank">
+									<xsl:value-of select="position()"/>
+								</xsl:attribute>
+								<xsl:attribute name="side">
+									<xsl:value-of select="2"/>
+								</xsl:attribute>
+								<xsl:attribute name="text_description">
+									<xsl:value-of select="@description"/>
+								</xsl:attribute>
+								<xsl:attribute name="text_id">
+									<xsl:value-of select="@descriptionid"/>
+								</xsl:attribute>
+								<xsl:attribute name="stateid">
+									<xsl:value-of select="@id"/>
+								</xsl:attribute>
+								<xsl:attribute name="strokecolor">
+									<xsl:value-of select="@sc"/>
+								</xsl:attribute>
+								<xsl:attribute name="strokewidth">
+									<xsl:value-of select="@sw"/>
+								</xsl:attribute>
+								<xsl:attribute name="px">
+									<xsl:value-of select="$P2 - ($actualW div 2)"/>
+								</xsl:attribute>
+								<xsl:attribute name="py">
+									<xsl:if test="position() = 1">	
+										<xsl:value-of select="(($workingH * position()) - ($actualH div 2))"/>
+									</xsl:if>
+									<xsl:if test="position()&gt; 1">	
+										<xsl:value-of select="((($workingH * position())+($actualLh * (position() - 1)) )  - ($actualH div 2))"/>
+									</xsl:if>
+								</xsl:attribute>
+								<xsl:attribute name="h">
+									<xsl:value-of select="$actualH"/>
+								</xsl:attribute>
+								<xsl:attribute name="w">
+									<xsl:value-of select="$actualW"/>
+								</xsl:attribute>
+							</rec>
+						</xsl:for-each>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:for-each select="$statesro">
+							<rec>
+								<xsl:attribute name="stateid_1">
+									<xsl:value-of select="@id1"/>
+								</xsl:attribute>
+								<xsl:attribute name="rank">
+									<xsl:value-of select="position()"/>
+								</xsl:attribute>
+								<xsl:attribute name="side">
+									<xsl:value-of select="2"/>
+								</xsl:attribute>
+								<xsl:attribute name="text_description">
+									<xsl:value-of select="@description"/>
+								</xsl:attribute>
+								<xsl:attribute name="text_id">
+									<xsl:value-of select="@descriptionid"/>
+								</xsl:attribute>
+								<xsl:attribute name="stateid">
+									<xsl:value-of select="@id"/>
+								</xsl:attribute>
+								<xsl:attribute name="strokecolor">
+									<xsl:value-of select="@sc"/>
+								</xsl:attribute>
+								<xsl:attribute name="strokewidth">
+									<xsl:value-of select="@sw"/>
+								</xsl:attribute>
+								<xsl:attribute name="px">
+									<xsl:value-of select="$P2 - ($actualW div 2)"/>
+								</xsl:attribute>
+								<xsl:attribute name="py">
+									<xsl:if test="position() = 1">	
+										<xsl:value-of select="(($workingH * position()) - ($actualH div 2))"/>
+									</xsl:if>
+									<xsl:if test="position()&gt; 1">	
+										<xsl:value-of select="((($workingH * position())+($actualLh * (position() - 1)) )  - ($actualH div 2))"/>
+									</xsl:if>
+								</xsl:attribute>
+								<xsl:attribute name="h">
+									<xsl:value-of select="$actualH"/>
+								</xsl:attribute>
+								<xsl:attribute name="w">
+									<xsl:value-of select="$actualW"/>
+								</xsl:attribute>
+							</rec>
+						</xsl:for-each>
+						
+					</xsl:otherwise>
+				</xsl:choose>
+				</xsl:variable>
 
 			
 			
