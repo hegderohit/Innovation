@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fsm>
+
+    <state id="1" sw="1" sf="0" sc="black" transparency="none" fillcolor="#ffffff" m="R"
+        description="State 1"> </state>
+    <state id="2" sw="1" sf="0" sc="black" transparency="none" fillcolor="#ffffff" m="R"
+        description="State 2"> </state>
+    <state id="3" sw="1" sf="0" sc="black" transparency="none" fillcolor="#ffffff" m="R"
+        description="State 3"> </state>
+    <state id="4" sw="1" sf="0" sc="black" transparency="none" fillcolor="#ffffff" m="R"
+        description="State 4" > </state>
+    <state id="5" sw="1" sf="0" sc="black" transparency="none" fillcolor="#ffffff" m="R"
+        description="State 5" > </state>
+    <state id="6" sw="1" sf="0" sc="black" transparency="none" fillcolor="#ffffff" m="R"
+        description="State 6" > </state>
+    <state id="9" sw="1" sf="0" sc="black" transparency="none" fillcolor="#ffffff" m="R"
+        description="State 9" > </state>
+    
+    <!--<state id="6" sw="1" sf="0" sc="black" transparency="none" fillcolor="#ffffff" m="R"
+        description="State 6" > </state>-->
+    
+   
+    <marker id="M1" x="0" y="0" w="0" h="0" sw="1" sf="0" sc="#000000" transparency="none"
+        fillcolor="#000000" m="T"/>
+
+    <transition id="1" Source="1" Destination="4" link="M1" sw="1" sf="0" sc="#ff0000"
+        transparency="none" fillcolor="white" m="L"> </transition>
+    <transition id="2" Source="1" Destination="5" link="M1" sw="1" sf="0" sc="#ff0000"
+        transparency="none" fillcolor="white" m="L"> </transition>
+   
+    <transition id="3" Source="3" Destination="5" link="M1" sw="1" sf="0" sc="#ff0000"
+        transparency="none" fillcolor="white" m="L"> </transition>
+    <transition id="4" Source="2" Destination="4" link="M1" sw="1" sf="0" sc="#ff0000"
+        transparency="none" fillcolor="white" m="L"> </transition>
+  
+    <transition id="6" Source="2" Destination="1" link="M1" sw="1" sf="0" sc="#ff0000"
+        transparency="none" fillcolor="white" m="L"> </transition>
+    <transition id="7" Source="1" Destination="3" link="M1" sw="1" sf="0" sc="#ff0000"
+        transparency="none" fillcolor="white" m="L"> </transition>
+    <transition id="5" Source="3" Destination="1" link="M1" sw="1" sf="0" sc="#ff0000"
+        transparency="none" fillcolor="white" m="L"> </transition>
+    <transition id="8" Source="4" Destination="5" link="M1" sw="1" sf="0" sc="#ff0000"
+    transparency="none" fillcolor="white" m="L"> </transition>
+    
+   <transition id="9" Source="4" Destination="6" link="M1" sw="1" sf="0" sc="#ff0000"
+        transparency="none" fillcolor="white" m="L"> </transition>
+    <transition id="10" Source="3" Destination="6" link="M1" sw="1" sf="0" sc="#ff0000"
+        transparency="none" fillcolor="white" m="L"> </transition>
+    <transition id="11" Source="5" Destination="6" link="M1" sw="1" sf="0" sc="#ff0000"
+        transparency="none" fillcolor="white" m="L"> </transition>
+    
+    <transition id="12" Source="5" Destination="9" link="M1" sw="1" sf="0" sc="#ff0000"
+        transparency="none" fillcolor="white" m="L"> </transition>
+    
+    <transition id="13" Source="9" Destination="6" link="M1" sw="1" sf="0" sc="#ff0000"
+        transparency="none" fillcolor="white" m="L"> </transition>
+    
+    
+</fsm>

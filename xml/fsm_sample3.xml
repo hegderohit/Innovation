@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fsm>
+    
+    <state id="state1" sw="1" sf="0" sc="black" transparency="none" fillcolor="white" m="R"
+        description="State 1" descriptionid="d1"> </state>
+    
+    <state id="state2" sw="1" sf="0" sc="black" transparency="none" fillcolor="white" m="E"
+        description="State 2" descriptionid="d2"> </state>
+    
+    
+    <state id="state3" sw="1" sf="0" sc="black" transparency="none" fillcolor="white" m="E"
+        description="State 3" descriptionid="d3"> </state>
+    
+    
+    <marker id="M1" x="0" y="0" w="0" h="0" sw="1" sf="0" sc="#000000" transparency="none"
+        fillcolor="white" m="T"/>
+    
+    <transition id="line1" Source="state1" Destination="state3" link="M1" sw="1" sf="0" sc="red"
+        transparency="none" fillcolor="white" m="L"> </transition>
+    <transition id="line2" Source="state2" Destination="state3" link="M1" sw="1" sf="0" sc="red"
+        transparency="none" fillcolor="white" m="L"> </transition>
+   
+    
+</fsm>
