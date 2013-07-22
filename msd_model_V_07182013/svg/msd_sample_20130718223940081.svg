@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="200">
+      <script type="text/javascript">
+            <![CDATA[
+function show(evt, node)
+{
+        var svgdoc = evt.target.ownerDocument;
+        var obj = svgdoc.getElementById(node);
+        obj.setAttribute("visibility", "visible");
+}
+
+function hide(evt, node)
+{
+        var svgdoc = evt.target.ownerDocument;
+        var obj = svgdoc.getElementById(node);
+        obj.setAttribute("visibility" , "hidden");
+}
+]]></script>
+      
+      <text x="100" y="20" font-size="15" font-family="Arial" fill="red" onmouseover="show(evt, 'object')" 
+            onmouseout="hide(evt, 'object')">Mouse over the text here</text>
+      
+      <g id="object" visibility="hidden" transform="matrix(1 0 0 1 100 75)" >
+            
+            <text x="0" y="0" text-anchor="middle" font-size="12" font-family="Arial" fill="black">And see the text on yellow box</text>
+      </g>
+</svg>

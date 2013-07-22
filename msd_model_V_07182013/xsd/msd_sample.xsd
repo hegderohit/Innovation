@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified">
+
+    <xs:element name="msd" type="MSD"/>
+
+<xs:complexType name="MSD">
+    <xs:sequence>
+        <xs:element name="instance" minOccurs="1" maxOccurs="unbounded" type="Instance"/>
+        <xs:element name="message" minOccurs="0" maxOccurs="unbounded" type="Message"/>
+        <xs:element name="marker" minOccurs="0" maxOccurs="unbounded" type="Marker"/>
+    </xs:sequence>
+</xs:complexType>
+   
+   
+   <xs:complexType name="Instance">
+       <xs:attributeGroup ref="InstanceAttributes"/>
+       <xs:attributeGroup ref="StrokeAttribute"/>
+   </xs:complexType>
+    
+    <xs:complexType name="Message">
+        <xs:attributeGroup ref="MessagesAttributes"/>
+        <xs:attributeGroup ref="StrokeAttribute"/>
+    </xs:complexType>
+    
+    
+    <xs:complexType name="Marker">
+        <xs:attributeGroup ref="MarkerAttribute"/>
+        <xs:attributeGroup ref="StrokeAttribute"/>
+    </xs:complexType>
+   
+   
+    <xs:attributeGroup  name="InstanceAttributes">  
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute  name="name" type="xs:string"/>
+        <xs:attribute name="description" type="xs:string"/>          
+    </xs:attributeGroup >
+
+    <xs:attributeGroup  name="MessagesAttributes">
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute  name="Sid" type="xs:string"/>
+        <xs:attribute  name="Did" type="xs:string"/>
+        <xs:attribute  name="description" type="xs:string"/>  
+        <xs:attribute  name="sequence" type="xs:int"/>
+        <xs:attribute name="end_mark" type="xs:string"/>
+    </xs:attributeGroup>
+    
+
+    <xs:attributeGroup name="StrokeAttribute">
+        <xs:attribute name="sf" type="xs:double"/>
+        <xs:attribute name="sw" type="xs:double"/>
+        <xs:attribute name="sh" type="xs:double"/>
+        <xs:attribute name="sc" type="xs:string"/>
+        <xs:attribute name="transparency" type="xs:string"/>
+        <xs:attribute name="fillcolor" type="xs:string"/>
+    </xs:attributeGroup>
+    
+    <xs:attributeGroup name="MarkerAttribute">
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="m" type="xs:string"/>
+    </xs:attributeGroup>  
+    
+
+</xs:schema>

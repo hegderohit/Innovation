@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <script type="text/javascript">
+				
+		function show(evt, node)
+		{
+        var svgdoc = evt.target.ownerDocument;
+        var obj = svgdoc.getElementById(node);
+        obj.setAttribute("visibility", "visible");
+		}
+
+		function hide(evt, node)
+		{
+        var svgdoc = evt.target.ownerDocument;
+        var obj = svgdoc.getElementById(node);
+        obj.setAttribute("visibility" , "hidden");
+		}
+		</script>
+   <rect width="90"
+         height="70"
+         x="85"
+         y="31.66666666666667"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="State_1"/>
+   <text style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, )"
+         onmouseout="hide(evt, )"
+         id="Text_1">
+      <tspan x="100" y="66.66666666666667">State 1</tspan>
+   </text>
+   <rect width="90"
+         height="70"
+         x="85"
+         y="118.33333333333334"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="State_2"/>
+   <text style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, )"
+         onmouseout="hide(evt, )"
+         id="Text_2">
+      <tspan x="100" y="153.33333333333334">State 2</tspan>
+   </text>
+   <rect width="90"
+         height="70"
+         x="225"
+         y="31.66666666666667"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="State_3"/>
+   <text style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, )"
+         onmouseout="hide(evt, )"
+         id="Text_3">
+      <tspan x="240" y="66.66666666666667">State 3</tspan>
+   </text>
+   <line x1="85"
+         y1="153.33333333333334"
+         x2="79"
+         y2="153.33333333333334"
+         stroke="#ff0000"
+         marker-end="url(#)"
+         id="Line1_6"/>
+   <line x1="79"
+         y1="153.33333333333334"
+         x2="79"
+         y2="49.16666666666667"
+         stroke="#ff0000"
+         marker-end="url(#)"
+         id="Line2_6"/>
+   <line x1="79"
+         y1="49.16666666666667"
+         x2="85"
+         y2="49.16666666666667"
+         stroke="#ff0000"
+         marker-end="url(#M1)"
+         id="Line3_6"/>
+   <line x1="175"
+         y1="49.16666666666667"
+         x2="225"
+         y2="55"
+         stroke="#ff0000"
+         marker-end="url(#M1)"
+         id="Line_7"/>
+   <line x1="225"
+         y1="55"
+         x2="175"
+         y2="66.66666666666667"
+         stroke="#ff0000"
+         marker-end="url(#M1)"
+         id="Line_5"/>
+   <marker orient="auto"
+           id="M1"
+           viewBox="-1 -4 10 8"
+           markerWidth="10"
+           markerHeight="8"
+           color="#000000">
+      <path d="M 0 0 L -5 5 L -5 -5 Z"
+            fill="currentColor"
+            stroke="currentColor"
+            stroke-width="1"/>
+   </marker>
+   <rect width="400"
+         height="200"
+         x="5"
+         y="5"
+         stroke-width="1"
+         stroke="black"
+         fill="none"/>
+</svg>

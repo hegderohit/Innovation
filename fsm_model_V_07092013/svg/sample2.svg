@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <script type="text/javascript">
+				
+		function show(evt, node)
+		{
+        var svgdoc = evt.target.ownerDocument;
+        var obj = svgdoc.getElementById(node);
+        obj.setAttribute("visibility", "visible");
+		}
+
+		function hide(evt, node)
+		{
+        var svgdoc = evt.target.ownerDocument;
+        var obj = svgdoc.getElementById(node);
+        obj.setAttribute("visibility" , "hidden");
+		}
+		</script>
+   <rect width="180"
+         height="140"
+         x="245"
+         y="263.3333333333333"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="state1"/>
+   <text style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, )"
+         onmouseout="hide(evt, )"
+         id="d1">
+      <tspan x="260" y="333.3333333333333">State 1</tspan>
+   </text>
+   <rect width="180"
+         height="140"
+         x="245"
+         y="636.6666666666666"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="state2"/>
+   <text style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, )"
+         onmouseout="hide(evt, )"
+         id="d2">
+      <tspan x="260" y="706.6666666666666">State 2</tspan>
+   </text>
+   <rect width="180"
+         height="140"
+         x="575"
+         y="263.3333333333333"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="state3"/>
+   <text style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, )"
+         onmouseout="hide(evt, )"
+         id="d3">
+      <tspan x="590" y="333.3333333333333">State 3</tspan>
+   </text>
+   <line x1="425"
+         y1="333.3333333333333"
+         x2="575"
+         y2="310"
+         stroke="red"
+         marker-end="url(#M1)"
+         id="line1"/>
+   <line x1="425"
+         y1="706.6666666666666"
+         x2="575"
+         y2="356.66666666666663"
+         stroke="red"
+         marker-end="url(#M1)"
+         id="line2"/>
+   <marker orient="auto"
+           id="M1"
+           viewBox="-1 -4 10 8"
+           markerWidth="10"
+           markerHeight="8"
+           color="white">
+      <path d="M 0 0 L -5 5 L -5 -5 Z"
+            fill="currentColor"
+            stroke="currentColor"
+            stroke-width="1"/>
+   </marker>
+   <rect width="1000"
+         height="1000"
+         x="5"
+         y="5"
+         stroke-width="1"
+         stroke="black"
+         fill="none"/>
+</svg>

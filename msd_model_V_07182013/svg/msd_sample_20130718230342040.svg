@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <script type="text/javascript">
+				
+		function show(evt, node)
+		{
+        var svgdoc = evt.target.ownerDocument;
+        var obj = svgdoc.getElementById(node);
+        obj.setAttribute("visibility", "visible");
+		}
+
+		function hide(evt, node)
+		{
+        var svgdoc = evt.target.ownerDocument;
+        var obj = svgdoc.getElementById(node);
+        obj.setAttribute("visibility" , "hidden");
+		}
+		</script>
+   <rect width="140"
+         height="100"
+         x="180"
+         y="175"
+         stroke-width="1"
+         stroke="#000000"
+         fill="none"
+         id="State_1"/>
+   <text id="Name_State_1"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'NameHide_State_1')"
+         onmouseout="hide(evt, 'NameHide_State_1')"
+         x="200"
+         y="250">Instance 1fgffffffffffffffg</text>
+   <g id="NameHide_State_1" visibility="hidden">
+      <text x="200"
+            y="255"
+            font-size="12"
+            font-family="Arial"
+            fill="black">And see the text on yellow box</text>
+   </g>
+   <text id="Desc_State_1"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'DescHide_State_1')"
+         onmouseout="hide(evt, 'DescHide_State_1')"
+         x="195"
+         y="225">Head 1</text>
+   <g id="DescHide_State_1" visibility="hidden">
+      <text x="195"
+            y="230"
+            font-size="12"
+            font-family="Arial"
+            fill="black">And see the text on yellow box</text>
+   </g>
+   <rect width="140"
+         height="100"
+         x="430"
+         y="175"
+         stroke-width="1"
+         stroke="#000000"
+         fill="none"
+         id="State_2"/>
+   <text id="Name_State_2"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'NameHide_State_2')"
+         onmouseout="hide(evt, 'NameHide_State_2')"
+         x="450"
+         y="250">Instance 2</text>
+   <g id="NameHide_State_2" visibility="hidden">
+      <text x="450"
+            y="255"
+            font-size="12"
+            font-family="Arial"
+            fill="black">And see the text on yellow box</text>
+   </g>
+   <text id="Desc_State_2"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'DescHide_State_2')"
+         onmouseout="hide(evt, 'DescHide_State_2')"
+         x="445"
+         y="225">Head 2</text>
+   <g id="DescHide_State_2" visibility="hidden">
+      <text x="445"
+            y="230"
+            font-size="12"
+            font-family="Arial"
+            fill="black">And see the text on yellow box</text>
+   </g>
+   <rect width="140"
+         height="100"
+         x="680"
+         y="175"
+         stroke-width="1"
+         stroke="#000000"
+         fill="none"
+         id="State_3"/>
+   <text id="Name_State_3"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'NameHide_State_3')"
+         onmouseout="hide(evt, 'NameHide_State_3')"
+         x="700"
+         y="250">Instance 3</text>
+   <g id="NameHide_State_3" visibility="hidden">
+      <text x="700"
+            y="255"
+            font-size="12"
+            font-family="Arial"
+            fill="black">And see the text on yellow box</text>
+   </g>
+   <text id="Desc_State_3"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'DescHide_State_3')"
+         onmouseout="hide(evt, 'DescHide_State_3')"
+         x="695"
+         y="225">Head 3</text>
+   <g id="DescHide_State_3" visibility="hidden">
+      <text x="695"
+            y="230"
+            font-size="12"
+            font-family="Arial"
+            fill="black">And see the text on yellow box</text>
+   </g>
+   <line x1="250"
+         y1="275"
+         x2="250"
+         y2="775"
+         stroke="#000000"
+         id="Line_1"/>
+   <line x1="500"
+         y1="275"
+         x2="500"
+         y2="775"
+         stroke="#000000"
+         id="Line_2"/>
+   <line x1="750"
+         y1="275"
+         x2="750"
+         y2="775"
+         stroke="#000000"
+         id="Line_3"/>
+   <marker orient="auto"
+           id="M1"
+           viewBox="-1 -4 10 8"
+           markerWidth="10"
+           markerHeight="8"
+           color="#000000">
+      <path d="M 0 0 L -5 5 L -5 -5 Z"
+            fill="#000000"
+            stroke="#000000"
+            stroke-width="1"/>
+   </marker>
+   <line x1="250"
+         y1="400"
+         x2="500"
+         y2="400"
+         id="Message_1"
+         stroke="black"
+         marker-end="url(#M1)"/>
+   <line x1="500"
+         y1="525"
+         x2="750"
+         y2="525"
+         id="Message_2"
+         stroke="black"
+         marker-end="url(#M1)"/>
+   <line x1="250"
+         y1="650"
+         x2="500"
+         y2="650"
+         id="Message_3"
+         stroke="black"
+         marker-end="url(#M1)"/>
+   <rect width="1000"
+         height="1000"
+         x="5"
+         y="5"
+         stroke-width="1"
+         stroke="black"
+         fill="none"/>
+</svg>

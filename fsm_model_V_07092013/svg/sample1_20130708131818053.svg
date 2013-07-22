@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <script type="text/javascript">
+				
+		function show(evt, node)
+		{
+        var svgdoc = evt.target.ownerDocument;
+        var obj = svgdoc.getElementById(node);
+        obj.setAttribute("visibility", "visible");
+		}
+
+		function hide(evt, node)
+		{
+        var svgdoc = evt.target.ownerDocument;
+        var obj = svgdoc.getElementById(node);
+        obj.setAttribute("visibility" , "hidden");
+		}
+		</script>
+   <rect width="180"
+         height="140"
+         x="245"
+         y="180"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="State_1"/>
+   <text style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, )"
+         onmouseout="hide(evt, )"
+         id="Text_1">
+      <tspan x="260" y="250">State 1</tspan>
+   </text>
+   <rect width="180"
+         height="140"
+         x="245"
+         y="470"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="State_2"/>
+   <text style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, )"
+         onmouseout="hide(evt, )"
+         id="Text_2">
+      <tspan x="260" y="540">State 2</tspan>
+   </text>
+   <rect width="180"
+         height="140"
+         x="245"
+         y="760"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="State_3"/>
+   <text style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, )"
+         onmouseout="hide(evt, )"
+         id="Text_3">
+      <tspan x="260" y="830">State 3</tspan>
+   </text>
+   <rect width="180"
+         height="140"
+         x="575"
+         y="180"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="State_4"/>
+   <text style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, )"
+         onmouseout="hide(evt, )"
+         id="Text_4">
+      <tspan x="590" y="250">State 4</tspan>
+   </text>
+   <rect width="180"
+         height="140"
+         x="575"
+         y="470"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="State_5"/>
+   <text style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, )"
+         onmouseout="hide(evt, )"
+         id="Text_5">
+      <tspan x="590" y="540">State 5</tspan>
+   </text>
+   <line x1="425"
+         y1="226.66666666666666"
+         x2="575"
+         y2="250"
+         stroke="#ff0000"
+         marker-end="url(#M1)"
+         id="Line_1"/>
+   <line x1="425"
+         y1="273.3333333333333"
+         x2="425"
+         y2="540"
+         stroke="#ff0000"
+         marker-end="url(#M1)"
+         id="Line_2"/>
+   <line x1="425"
+         y1="830"
+         x2="575"
+         y2="540"
+         stroke="#ff0000"
+         marker-end="url(#M1)"
+         id="Line_3"/>
+   <marker orient="auto"
+           id="M1"
+           viewBox="-1 -4 10 8"
+           markerWidth="10"
+           markerHeight="8"
+           color="#000000">
+      <path d="M 0 0 L -5 5 L -5 -5 Z"
+            fill="currentColor"
+            stroke="currentColor"
+            stroke-width="1"/>
+   </marker>
+   <rect width="1000"
+         height="1000"
+         x="5"
+         y="5"
+         stroke-width="1"
+         stroke="black"
+         fill="none"/>
+</svg>
