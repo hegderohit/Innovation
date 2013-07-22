@@ -27,6 +27,35 @@
 	<!-- Functions -->
 	<xsl:param name="delimiter" select="','"/>
 
+	<xsl:function name="func:getSize" as="item()*">
+		<xsl:param name="component1_w"/>
+		<xsl:param name="component1_h"/>
+		
+		
+		<xsl:variable name="refwidth" select="800"/>
+		<xsl:variable name="refheight" select="600"/>
+		<xsl:variable name="refmodelheight" select="140"/>
+		<xsl:variable name="refmodelwidth" select="180"/>
+		
+		<xsl:variable name="perentage_diff">
+			<xsl:if test="($component1_w &gt; $refwidth )">
+			<xsl:value-of select="(($component1_w - $refwidth) div ($refwidth))"/>
+			</xsl:if>
+			<xsl:if test="($component1_w &lt; $refwidth )">
+				<xsl:value-of select="(($component1_w - $refwidth) div ($refwidth))"/>
+			</xsl:if>
+			
+		</xsl:variable>
+		
+		<xsl:message>
+			--------------------------------------------------------------------------------
+			Perc Diff: <xsl:value-of select="$perentage_diff"/>
+			--------------------------------------------------------------------------------
+		</xsl:message>
+		
+	</xsl:function>
+
+
 	<xsl:function name="func:display" as="item()*">
 		<xsl:param name="ordinate"/>
 
@@ -630,10 +659,13 @@
         Desc: Template that matches and process 'fsm' tag from the document
     -->
 	<xsl:template name="process_fsm" match="fsm">
+		
+		
+		
 		<xsl:param name="component1_px" select="5"/>
 		<xsl:param name="component1_py" select="5"/>
-		<xsl:param name="component1_w" select="1000"/>
-		<xsl:param name="component1_h" select="1000"/>
+		<xsl:param name="component1_w" select="800"/>
+		<xsl:param name="component1_h" select="600"/>
 
 
 		<!-- 
@@ -661,6 +693,12 @@
         obj.setAttribute("visibility" , "hidden");
 		}
 		</script>
+			
+			
+			<xsl:variable name="auto_size" select="func:getSize($component1_w,$component1_h)"/>
+			
+			
+			
 			<!--
             Type : Variable
             Name : actualW
@@ -683,7 +721,7 @@
             Desc : Actuall Spacing between the model with reference to the screen size
         -->
 			<xsl:variable name="actualL">
-				<xsl:value-of select="150"/>
+				<xsl:value-of select="100"/>
 			</xsl:variable>
 			
 			<xsl:variable name="actualLh">

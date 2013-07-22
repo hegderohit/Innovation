@@ -13,9 +13,9 @@
         description="State 5" > </state>
     <state id="6" sw="1" sf="0" sc="black" transparency="none" fillcolor="#ffffff" m="R"
         description="State 6" > </state>
-    <state id="9" sw="1" sf="0" sc="black" transparency="none" fillcolor="#ffffff" m="R"
+    <!--<state id="9" sw="1" sf="0" sc="black" transparency="none" fillcolor="#ffffff" m="R"
         description="State 9" > </state>
-    
+    -->
     <!--<state id="10" sw="1" sf="0" sc="black" transparency="none" fillcolor="#ffffff" m="R"
         description="State 10" > </state>-->
     
@@ -25,13 +25,13 @@
 
     <transition id="1" Source="1" Destination="4" link="M1" sw="1" sf="0" sc="#ff0000"
         transparency="none" fillcolor="white" m="L"> </transition>
-    <transition id="2" Source="1" Destination="5" link="M1" sw="1" sf="0" sc="#ff0000"
+    <transition id="2" Source="2" Destination="3" link="M1" sw="1" sf="0" sc="#ff0000"
         transparency="none" fillcolor="white" m="L"> </transition>
    
-    <transition id="3" Source="3" Destination="5" link="M1" sw="1" sf="0" sc="#ff0000"
-        transparency="none" fillcolor="white" m="L"> </transition>
-    <transition id="4" Source="2" Destination="4" link="M1" sw="1" sf="0" sc="#ff0000"
-        transparency="none" fillcolor="white" m="L"> </transition>
+   <!-- <transition id="3" Source="3" Destination="5" link="M1" sw="1" sf="0" sc="#ff0000"
+        transparency="none" fillcolor="white" m="L"> </transition>-->
+    <!--<transition id="4" Source="2" Destination="4" link="M1" sw="1" sf="0" sc="#ff0000"
+        transparency="none" fillcolor="white" m="L"> </transition>-->
   
     <transition id="6" Source="2" Destination="1" link="M1" sw="1" sf="0" sc="#ff0000"
         transparency="none" fillcolor="white" m="L"> </transition>
@@ -39,7 +39,7 @@
         transparency="none" fillcolor="white" m="L"> </transition>
     <transition id="5" Source="3" Destination="1" link="M1" sw="1" sf="0" sc="#ff0000"
         transparency="none" fillcolor="white" m="L"> </transition>
-    <transition id="8" Source="4" Destination="5" link="M1" sw="1" sf="0" sc="#ff0000"
+    <!--<transition id="8" Source="4" Destination="5" link="M1" sw="1" sf="0" sc="#ff0000"
     transparency="none" fillcolor="white" m="L"> </transition>
     
    <transition id="9" Source="4" Destination="6" link="M1" sw="1" sf="0" sc="#ff0000"
@@ -53,7 +53,7 @@
         transparency="none" fillcolor="white" m="L"> </transition>
     
     <transition id="13" Source="9" Destination="6" link="M1" sw="1" sf="0" sc="#ff0000"
-        transparency="none" fillcolor="white" m="L"> </transition>
+        transparency="none" fillcolor="white" m="L"> </transition>-->
     
     
 </fsm>

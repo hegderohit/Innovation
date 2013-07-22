@@ -14,7 +14,7 @@
 	<xsl:param name="component1_px" select="5"/>
 	<xsl:param name="component1_py" select="5"/>
 	<xsl:param name="component1_w" select="1000"/>
-	<xsl:param name="component1_h" select="900"/>
+	<xsl:param name="component1_h" select="1000"/>
 
 
 	<!-- 
@@ -26,6 +26,37 @@
 
 	<!-- Functions -->
 	<xsl:param name="delimiter" select="','"/>
+
+	<xsl:function name="func:getSize" as="item()*">
+		<xsl:param name="component1_w"/>
+		<xsl:param name="component1_h"/>
+		
+		
+		<xsl:variable name="refwidth" select="800"/>
+		<xsl:variable name="refheight" select="600"/>
+		<xsl:variable name="refmodelheight" select="140"/>
+		<xsl:variable name="refmodelwidth" select="180"/>
+		
+		<xsl:variable name="perentage_diff">
+			<xsl:if test="($component1_w &gt; $refwidth )">
+				<xsl:value-of select="(($component1_w - $refwidth) div ($refwidth))"/>
+			</xsl:if>
+			<xsl:if test="($component1_w &lt; $refwidth )">
+				<xsl:value-of select="(($component1_w - $refwidth) div ($refwidth))"/>
+			</xsl:if>
+			
+		</xsl:variable>
+		
+		<xsl:message>
+			--------------------------------------------------------------------------------
+			Perc Diff: <xsl:value-of select="$perentage_diff"/>
+			--------------------------------------------------------------------------------
+		</xsl:message>
+		
+	</xsl:function>
+	
+	
+
 
 	<xsl:function name="func:display" as="item()*">
 		<xsl:param name="ordinate"/>
@@ -150,69 +181,9 @@
 			
 			
 			<xsl:variable name="output">
-				<!-- [TODO later] -->
-				<!-- Transitions with destination on the state  
-			<for each line>
-						[condition : dest=state_id]
-							<rec>
-							Attributes : 
-							<x>
-							<y>
-							<type = 1>
-							<t_id>
-							</rec>
-						</for each>
-			-->
-				<!--<xsl:for-each select="(($transitions[@Destination=$id])|($transitions[@Destination=$id]))">
-				<rec>
-					<xsl:attribute name="state_id" select="$id"/>
-					<xsl:attribute name="transition_id" select="@id"/>
-					<xsl:attribute name="type" select="1"/>
-					<xsl:attribute name="x">
-						<xsl:if test="$side=1">
-							<xsl:value-of select="($px + $actualW)"/>
-						</xsl:if>
-						<xsl:if test="$side=2">
-							<xsl:value-of select="($px)"/>
-						</xsl:if>
-					</xsl:attribute>
-					<xsl:attribute name="y" select="($py)+($workingH * position())"/>
-				</rec>
-			</xsl:for-each>
 				
 				
-				<!-\- Transitions with source on the state  
-			<for each line>
-						[condition : SRC=state_id]
-							<rec>
-							Attributes : 
-							<x>
-							<y>
-							<type = 1>
-							<t_id>
-							</rec>
-						</for each>
-			-\->
-				<xsl:for-each select="$transitions[@Source=$id]">
-					<rec>
-						<xsl:attribute name="state_id" select="$id"/>
-						<xsl:attribute name="transition_id" select="@id"/>
-						<xsl:attribute name="type" select="0"/>
-						<xsl:attribute name="x">
-							<xsl:if test="$side=1">
-								<xsl:value-of select="($px + $actualW)"/>
-							</xsl:if>
-							<xsl:if test="$side=2">
-								<xsl:value-of select="($px)"/>
-							</xsl:if>
-						</xsl:attribute>
-						<xsl:attribute name="y" select="($py)+($workingH * $position)"/>
-					</rec>
-				</xsl:for-each>
-
--->
-				
-				<xsl:for-each select="(($transitions[@Destination=$id]))">
+				<xsl:for-each select="($transitions[@Destination=$id])">
 					<xsl:if test="$transitions[@Destination=$id]">
 					<rec>
 					<xsl:attribute name="side" select="$side"/>
@@ -233,18 +204,7 @@
 				</xsl:if>
 				</xsl:for-each>
 				
-				<!-- Transitions with source on the state  
-			<for each line>
-						[condition : SRC=state_id]
-							<rec>
-							Attributes : 
-							<x>
-							<y>
-							<type = 1>
-							<t_id>
-							</rec>
-						</for each>
-			-->
+			
 				<xsl:for-each select="(($transitions[@Source=$id]))">
 					<xsl:if test="$transitions[@Source=$id]">
 					<rec>
@@ -264,12 +224,13 @@
 						<xsl:attribute name="y" select="($py)+($workingH * position())"/>
 					</rec>
 					</xsl:if>
-				</xsl:for-each>			
+			</xsl:for-each>	
 			</xsl:variable>
 		
 			<!-- Retrun Value -->
 			<xsl:sequence select="$output"/>
-		</xsl:for-each>
+			
+			</xsl:for-each>
 		
 	</xsl:function>
 
@@ -679,7 +640,7 @@
 		<xsl:param name="component1_px" select="5"/>
 		<xsl:param name="component1_py" select="5"/>
 		<xsl:param name="component1_w" select="1000"/>
-		<xsl:param name="component1_h" select="1000"/>
+		<xsl:param name="component1_h" select="800"/>
 
 
 		<!-- 
@@ -707,33 +668,116 @@
         obj.setAttribute("visibility" , "hidden");
 		}
 		</script>
+			
+			
+			<xsl:variable name="auto_size" select="func:getSize($component1_w,$component1_h)"/>
+			
+			
+			<!-- Auto Sizing Logic -->
+			<xsl:variable name="perdiff_w">
+				<xsl:if test="$component1_w > 800">
+					<xsl:value-of select="($component1_w - 800) div 800"/>
+				</xsl:if>
+				<xsl:if test="$component1_w &lt; 800">
+					<xsl:value-of select="(800 - $component1_w) div 800"/>
+				</xsl:if>
+				
+			</xsl:variable>
+			
+			<xsl:variable name="perdiff_h">
+			<xsl:if test="$component1_h > 600">
+				<xsl:value-of select="($component1_w - 600) div 600"/>
+			</xsl:if>
+			<xsl:if test="$component1_w &lt; 600">
+				<xsl:value-of select="(600 - $component1_w) div 600"/>
+			</xsl:if>
+			
+			</xsl:variable>
+			
+			<xsl:message>
+				-------------------------
+				DIFF  W: <xsl:value-of select="$perdiff_w"></xsl:value-of>
+				
+				DIFF  H: <xsl:value-of select="$perdiff_h"></xsl:value-of>
+				------------------
+			</xsl:message>
+				
 			<!--
             Type : Variable
             Name : actualW
             Desc : Actuall width of the model with reference to the screen size
         -->
-			<xsl:variable name="actualW">
-				<xsl:value-of select="180"/>
+			
+			<xsl:variable name="tempW">
+				<xsl:if test="$component1_w > 800">
+				<xsl:value-of select="(180) + (180 * $perdiff_w)"/>
+				</xsl:if>
+				<xsl:if test="$component1_w &lt; 800">
+					<xsl:value-of select="(180) - (180 * $perdiff_w)"/>
+				</xsl:if>
 			</xsl:variable>
+			
+			
+			<xsl:variable name="actualW">
+				<xsl:if test="$tempW > 240">
+				<xsl:value-of select="240"/>
+				</xsl:if>
+				<xsl:if test="$tempW &lt; 240">
+					<xsl:value-of select="$tempW"/>
+				</xsl:if>
+				
+			</xsl:variable>
+			
 			<!--
             Type : Variable
             Name : actualH
             Desc : Actuall height of the model with reference to the screen size
         -->
+			
+			<xsl:variable name="temph">
+				<xsl:if test="$component1_h > 600">
+					<xsl:value-of select="(140) + (140 * $perdiff_w)"/>
+				</xsl:if>
+				<xsl:if test="$component1_h &lt; 600">
+					<xsl:value-of select="(140) - (140 * $perdiff_w)"/>
+				</xsl:if>
+			</xsl:variable>
+			
 			<xsl:variable name="actualH">
-				<xsl:value-of select="140"/>
+				<xsl:if test="$temph > 180">
+					<xsl:value-of select="180"/>
+				</xsl:if>
+				<xsl:if test="$temph &lt; 180">
+					<xsl:value-of select="$temph"/>
+				</xsl:if>
 			</xsl:variable>
 			<!--
             Type : Variable
             Name : actualL
             Desc : Actuall Spacing between the model with reference to the screen size
         -->
+			<xsl:variable name="tempL">
+				<xsl:if test="$component1_w > 800">
+					<xsl:value-of select="100 + ($perdiff_w * 100)"/>
+				</xsl:if>
+				<xsl:if test="$component1_w &lt; 800">
+					<xsl:value-of select="100 - ($perdiff_w * 100)"/>
+				</xsl:if>
+				
+				
+			</xsl:variable>
+			
 			<xsl:variable name="actualL">
-				<xsl:value-of select="150"/>
+				<xsl:if test="$tempW > 150">
+					<xsl:value-of select="150"/>
+				</xsl:if>
+				<xsl:if test="$tempW &lt; 150">
+					<xsl:value-of select="$tempL"/>
+				</xsl:if>
 			</xsl:variable>
 			
 			<xsl:variable name="actualLh">
-				<xsl:value-of select="40"/>
+				<xsl:value-of select="20"/>
 			</xsl:variable>
 			<!--
             Type : Variable
@@ -1049,14 +1093,7 @@
 
 
 			<xsl:message> State l : <xsl:value-of select="$statesl"/>
-				<!--P0 :<xsl:value-of select="$P0"/> 
-				P1: <xsl:value-of select="($P1)"/> 
-				P2:<xsl:value-of select="($P2)"/> 
-				Count : <xsl:value-of select="$statecount"/> 
-				leftCount : <xsl:value-of select="$leftcount"/> 
-				rightCount : <xsl:value-of select="$rightcount"/> 
-				WorkingH :<xsl:value-of select="$workingH"/>
-				model_centers: <xsl:value-of select="($model_centersl/x)"/>-->
+				
 			</xsl:message>
 
 			<!--
@@ -1078,203 +1115,14 @@
 			<xsl:variable name="line_points"
 				select="func:getRecord($context1,$context2,$state_model_ordinates,$actualH,$actualW)"/>
 
-
-
-<!--
-			<xsl:message> aaaaaaaaaaaaa:<xsl:value-of select="$line_points"/>
-			</xsl:message>
-
-			<xsl:for-each select="$line_points/*"> aaaaaaaaaaaaa:
-				<xsl:copy-of select="."/>
-			</xsl:for-each>
--->
-			
-			
+	
 		
 		<xsl:call-template name="fsm_transition">
 			<xsl:with-param name="coordinates" select="$line_points"/>
 		</xsl:call-template>
 		
 			
-	<!--<!-\- Draw transition template call -\->		
-			<xsl:for-each select="./transition">
-				<xsl:variable name="t_id" select="@id"/>
-					
-				
-				<!-\- get  start point 
-				  xpath  :  search by  transaction ID  AND   type = start
-				  $line_points/rec[(@transition_id=$t_id) and (@type=0) ]
-				-\->
-				
-				<!-\- get  endpoint point
-					
-					xpath  :  search by  transaction ID  AND   type = start
-				$line_points/rec[(@transition_id=$t_id) and (@type=1) ]
-			   -\-> 
-			
-				<!-\-draw transition-\->
-				<xsl:variable name="sx">
-					<xsl:for-each select="$line_points/*"> 
-						<xsl:if test="(@transition_id=$t_id) and(@type=0)">
-							<xsl:value-of select="@x"/>
-						</xsl:if>		
-					</xsl:for-each>					
-				</xsl:variable>
-				
-				<xsl:variable name="sy">
-					<xsl:for-each select="$line_points/*"> 
-						<xsl:if test="(@transition_id=$t_id) and(@type=0)">
-							<xsl:value-of select="@y"/>
-						</xsl:if>		
-					</xsl:for-each>					
-				</xsl:variable>
-				
-				
-				<xsl:variable name="ex">
-					<xsl:for-each select="$line_points/*"> 
-						<xsl:if test="(@transition_id=$t_id) and(@type=1)">
-							<xsl:value-of select="@x"/>
-						</xsl:if>		
-					</xsl:for-each>					
-				</xsl:variable>
-				
-				<xsl:variable name="ey">
-					<xsl:for-each select="$line_points/*"> 
-						<xsl:if test="(@transition_id=$t_id) and(@type=1)">
-							<xsl:value-of select="@y"/>
-						</xsl:if>		
-					</xsl:for-each>					
-				</xsl:variable>
-				
-
-				<xsl:call-template name="temp_liner">
-					<xsl:with-param name="sx" select="$sx"/>
-					<xsl:with-param name="sy" select="$sy"/>
-					<xsl:with-param name="ex" select="$ex"/>
-					<xsl:with-param name="ey" select="$ey"/>
-				</xsl:call-template>	
-				
-			</xsl:for-each>-->
-
-			
-<!-- [TODO later] -->
-			<!--<xsl:for-each select="state">
-				<!-\- [TODO] DEBUG -\->
-				<!-\-<xsl:call-template name="liner">
-					<xsl:with-param name="id2" select="@id"/>
-					<xsl:with-param name="sx" select="100"/>
-					<xsl:with-param name="ex" select="200"/>
-					<xsl:with-param name="sy" select="100"/>
-					<xsl:with-param name="ey" select="200"/>
-					<xsl:with-param name="marker" select="marker"/>
-					<xsl:with-param name="Width" select="100"/>
-					<xsl:with-param name="Height" select="0"/>
-					<xsl:with-param name="stroke-width" select="1"/>
-					<xsl:with-param name="stroke-format" select="0"/>
-					<xsl:with-param name="stroke-color" select="black"/>
-					<xsl:with-param name="fill-opacity" select="0"/>
-					<xsl:with-param name="fill" select="white"/>
-				</xsl:call-template>-\->
-				<xsl:variable name="state_id" select="@id"/>
-				<xsl:variable name="linecount">
-					<xsl:value-of
-						select="count((./parent::fsm/transition[@Source=$state_id])|(./parent::fsm/transition[@Destination=$state_id]))"
-					/>
-				</xsl:variable>
-				<xsl:variable name="model_working_H">
-					<xsl:value-of select="($actualH div ($linecount + 1))"/>
-				</xsl:variable>
-				<xsl:variable name="model_line_ordinates">
-					<xsl:for-each select="./parent::fsm/transition">
-						<rec>
-							<xsl:attribute name="transition_id">
-								<xsl:value-of select="./@id"/>
-							</xsl:attribute> <xsl:attribute name="marker_id">
-								<xsl:value-of select="./@link"/>
-							</xsl:attribute> <xsl:choose>
-								<xsl:when test="(@Source=$state_id)">
-									<xsl:attribute name="sx">
-										<!-\- Include for each of state model to check the matching one -\->
-										<xsl:for-each select="$state_model_ordinates/*">
-											<xsl:if test="@stateid=$state_id">
-												<xsl:value-of select="@px"/>
-											</xsl:if>
-										</xsl:for-each>
-									</xsl:attribute>
-									<xsl:attribute name="sy">
-										<xsl:for-each select="$state_model_ordinates/*">
-											<xsl:if test="@stateid=$state_id">
-												<xsl:value-of
-												select="(@py)+($model_working_H * position())"/>
-											</xsl:if>
-										</xsl:for-each>
-									</xsl:attribute>
-								</xsl:when>
-								<xsl:otherwise>
-									<xsl:attribute name="ex">
-										<xsl:for-each select="$state_model_ordinates/*">
-											<xsl:if test="@stateid=$state_id">
-												<xsl:value-of select="@px"/>
-											</xsl:if>
-										</xsl:for-each>
-									</xsl:attribute> <xsl:attribute name="ey">
-										<xsl:for-each select="$state_model_ordinates/*">
-											<xsl:if test="@stateid=$state_id">
-												<xsl:value-of
-												select="(@py)+($model_working_H * position())"/>
-											</xsl:if>
-										</xsl:for-each>
-									</xsl:attribute>
-								</xsl:otherwise>
-							</xsl:choose>
-						</rec>
-					</xsl:for-each>
-				</xsl:variable>
-				
-				<!-\-[TODO] Trying a new logic -\->
-				
-				
-				<xsl:variable name="transition_ordinates">
-					<xsl:for-each select="./parent::fsm/transition">
-						<rec>
-							<xsl:attribute name="id">
-								<xsl:value-of select="@id"/>
-							</xsl:attribute>
-							
-							
-							<xsl:attribute name="sx">
-								<xsl:for-each select="$model_line_ordinates/*">
-									<xsl:if test="@transition_id=./parent/@id">
-									<xsl:value-of select="@sx"/>
-								</xsl:if>
-								</xsl:for-each>
-							</xsl:attribute>
-							
-						</rec>
-						
-					</xsl:for-each>
-				</xsl:variable>
-				
-				
-						6666666666666666666666666 end lines66666666666666 
-						<xsl:for-each select="$transition_ordinates/*"> 
-							position: <xsl:value-of select="position()"/> 
-							Line vales : <xsl:copy-of select="."/>
-						</xsl:for-each> 
-						6666666666666666666666666 lines666666666666666666
-				
-				
-				
-				<!-\-<xsl:call-template name="model_tranition">
-					<xsl:with-param name="coordinates" select="$model_line_ordinates"/>
-				</xsl:call-template>-\->
-				
-				
-				
-			</xsl:for-each>
-			
-			-->
-
+	
 
 			<rect width="{$component1_w}" height="{$component1_h}" x="{$component1_px}"
 				y="{$component1_py}" stroke-width="1" stroke="black" fill="none"/>
@@ -1335,25 +1183,6 @@
 	<xsl:template name="fsm_transition">
 		<xsl:param name="coordinates"/>
 
-		<!--<xsl:for-each select="./parent::fsm/transition">
-			<xsl:if test="@id=$coordinates/transition_id">
-				<xsl:call-template name="liner">
-					<xsl:with-param name="id2" select="@id"/>
-					<xsl:with-param name="sx" select="$coordinates/sx"/>
-					<xsl:with-param name="ex" select="$coordinates/ex"/>
-					<xsl:with-param name="sy" select="$coordinates/sy"/>
-					<xsl:with-param name="ey" select="$coordinates/ey"/>
-					<xsl:with-param name="marker" select="@link"/>
-					<xsl:with-param name="Width" select="($coordinates/ex - $coordinates/sx)"/>
-					<xsl:with-param name="Height" select="($coordinates/ey - $coordinates/sy)"/>
-					<xsl:with-param name="stroke-width" select="1"/>
-					<xsl:with-param name="stroke-format" select="0"/>
-					<xsl:with-param name="stroke-color" select="black"/>
-					<xsl:with-param name="fill-opacity" select="0"/>
-					<xsl:with-param name="fill" select="white"/>
-				</xsl:call-template>
-			</xsl:if>
-		</xsl:for-each>-->
 		
 		<!-- Draw transition template call -->		
 		<xsl:for-each select="./transition">
@@ -1382,8 +1211,8 @@
 			<xsl:variable name="output_ordinates" select="func:getpath_ordinates($t_id,$coordinates,$position,$model_width,$side)"/>
 				
 				
-				
-			<xsl:variable name="temp_sx" select="$output_ordinates/rec/@sx"/>
+			
+			
 				
 			<xsl:variable name="sx">
 				<xsl:for-each select="$coordinates/*"> 
@@ -1506,7 +1335,7 @@
 					<xsl:with-param name="sy" select="($sy)"/>
 					<xsl:with-param name="ex" select="(($sx - $model_width) - ($offset * (2 * $position)))"/>
 					<xsl:with-param name="ey" select="$sy"/>
-					<xsl:with-param name="marker" select="@link"/>
+					
 					<xsl:with-param name="Width" select="($ex - $sx)"/>
 					<xsl:with-param name="Height" select="($ey - $sy)"/>
 					<xsl:with-param name="stroke-width" select="1"/>
@@ -1522,7 +1351,7 @@
 					<xsl:with-param name="sy" select="$sy"/>
 					<xsl:with-param name="ex" select="(($ex - $model_width)-($offset * (2 * $position)))"/>
 					<xsl:with-param name="ey" select="$ey"/>
-					<xsl:with-param name="marker" select="@link"/>
+					
 					<xsl:with-param name="Width" select="($ex - $sx)"/>
 					<xsl:with-param name="Height" select="($ey - $sy)"/>
 					<xsl:with-param name="stroke-width" select="1"/>
