@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <rect width="200"
+         height="150"
+         x="100"
+         y="100"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="Sys_Comp1"/>
+   <text id="Sys_CompName_1"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'Sys_CompHidden_1')"
+         onmouseout="hide(evt, 'Sys_CompHidden_1')"
+         x="135"
+         y="130">
+            NAME
+        </text>
+   <g id="Sys_CompHidden_1" visibility="hidden">
+      <text x="145"
+            y="135"
+            font-size="12"
+            font-family="Arial"
+            fill="black"/>
+   </g>
+   <rect width="80"
+         height="40"
+         x="400"
+         y="100"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="sap_1"/>
+   <ellipse rx="40"
+            ry="20"
+            cx="440"
+            cy="120"
+            stroke-width="1"
+            stroke="black"
+            fill="none"
+            id="Eclipsesap_1"/>
+   <text id="SapName_1"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'SapHidden_1')"
+         onmouseout="hide(evt, 'SapHidden_1')"
+         x="420"
+         y="90">
+            SAP
+        </text>
+   <g id="SapHidden_1" visibility="hidden">
+      <text x="430"
+            y="95"
+            font-size="12"
+            font-family="Arial"
+            fill="black"/>
+   </g>
+   <marker orient="auto"
+           id="marker_1"
+           viewBox="-1 -4 10 8"
+           markerWidth="20"
+           markerHeight="10"
+           color="">
+      <path d="M 0 0 L -8 8 L -8 -8 Z"
+            fill="black"
+            stroke="black"
+            stroke-width="1"/>
+   </marker>
+   <line x1="100"
+         y1="400"
+         x2="300"
+         y2="400"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="Link_1"
+         marker-end="url(#marker_1)"/>
+   <text id="LinkName_1"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'LinkHidden_1')"
+         onmouseout="hide(evt, 'LinkHidden_1')"
+         x="200"
+         y="420">
+            Link
+        </text>
+   <g id="LinkHidden_1" visibility="hidden">
+      <text x="190"
+            y="425"
+            font-size="12"
+            font-family="Arial"
+            fill="black"/>
+   </g>
+   <line x1="500"
+         y1="400"
+         x2="700"
+         y2="400"
+         stroke-width="1"
+         stroke="black"
+         fill="none"/>
+   <line x1="500"
+         y1="550"
+         x2="700"
+         y2="550"
+         stroke-width="1"
+         stroke="black"
+         fill="none"/>
+   <path d="M500 400 C 450 450, 450 500, 500 550"
+         stroke="black"
+         fill="transparent"/>
+   <path d="M700 400 C 750 450, 750 500,              700 550"
+         stroke="black"
+         fill="transparent"/>
+   <text id="sys_process_Name1"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'sys_process_Hidden_1')"
+         onmouseout="hide(evt, 'sys_process_Hidden_1')"
+         x="600"
+         y="430">
+           System process
+        </text>
+   <g id="sys_process_Hidden_1" visibility="hidden">
+      <text x="590"
+            y="435"
+            font-size="12"
+            font-family="Arial"
+            fill="black"/>
+   </g>
+</svg>

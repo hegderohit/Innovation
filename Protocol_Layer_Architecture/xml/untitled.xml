@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol>
+    
+    <sap id="1" x="400" y="100" w="80" h="40" name="SAP1" description="Dscription"/>
+    
+    <database id="1" x="600" y="800" w="200" h="150" name="DB1" description="Dscription"/>
+    
+    <link id="1" x="100" y="400" w="200" h="0" name="Link" description="Dscription"/>
+    
+    <process id="1" x="500" y="400" w="200" h="150" name="SYS Process" description="Dscription"/>
+   
+    <interface id="1" x="800" y="400" w="300" h="200" name="SYS Interface" description="Dscription"/>
+    
+</protocol>

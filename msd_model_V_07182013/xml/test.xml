@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<msd>
+    
+    <instance id="1" name="NAS" description="" sw="1" sf="0" sc="#000000" transparency="none"
+        fillcolor="#ffffff"/>
+    <instance id="2" name="RRC" description="" sw="1" sf="0" sc="#000000" transparency="none"
+        fillcolor="#ffffff"/>
+    <instance id="3" name="ENODEB" description="" sw="1" sf="0" sc="#000000" transparency="none"
+        fillcolor="#ffffff"/>
+    
+    <marker id="M1" sw="1" sf="0" sc="#000000" transparency="none" fillcolor="#000000" m="T"/>
+    
+    <event id="1" eventType="MESSAGE" name="1" description="1.MIB" srcInstanceId="3"
+        dstInstanceId="2" sequenceId="1" sequence_number="1" end_mark="M1" sw="1" sf="0"
+        sc="#000000" fillcolor="#ffffff"/>
+    
+    <event id="2" eventType="MESSAGE" name="2" description="2.SIB" srcInstanceId="3"
+        dstInstanceId="2" sequenceId="1" sequence_number="2" end_mark="M1" sw="1" sf="0"
+        sc="#000000" fillcolor="#ffffff"/>
+    
+    <event id="3" eventType="MESSAGE" name="3" description="3.rrcConnectionRequest"
+        srcInstanceId="2" dstInstanceId="2" sequenceId="3" sequence_number="3" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+    <event id="4" eventType="MESSAGE" name="4" description="4.rrcConnectionSetup"
+        srcInstanceId="3" dstInstanceId="2" sequenceId="4" sequence_number="4" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+    
+    <event id="5" eventType="MESSAGE" name="5" description="5.RRC_CONNECTION_INDICATION"
+        srcInstanceId="2" dstInstanceId="1" sequenceId="1" sequence_number="5" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+</msd>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified"
+	targetNamespace="http://www.innovation3g.com/msd"
+	xmlns="http://www.innovation3g.com/msd" >
+
+    <xs:element name="msd" type="MSD"/>
+
+	<xs:complexType name="MSD">
+	<xs:annotation>
+		<xs:documentation>
+		   MSD root element 	
+		</xs:documentation>
+	</xs:annotation>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="instance" minOccurs="1" maxOccurs="unbounded" type="Instance"/>
+        <xs:element name="event" minOccurs="0" maxOccurs="unbounded" type="EventType"/>
+        <xs:element name="marker" minOccurs="0" maxOccurs="unbounded" type="Marker"/>
+    </xs:choice>
+</xs:complexType>
+   
+   
+   <xs:complexType name="Instance">
+       <xs:attributeGroup ref="InstanceAttributeGroup"/>
+       <xs:attributeGroup ref="StrokeAttribute"/>
+   </xs:complexType>
+    
+    <xs:complexType name="EventType">
+        <xs:attributeGroup ref="EventAttributeGroup"/>
+    	<xs:attributeGroup ref="SequenceAttributeGroup"/>
+        <xs:attributeGroup ref="StrokeAttribute"/>
+    </xs:complexType>
+    
+    <xs:complexType name="Marker">
+        <xs:attributeGroup ref="MarkerAttribute"/>
+        <xs:attributeGroup ref="StrokeAttribute"/>
+    </xs:complexType>
+	
+    <xs:simpleType name="EventTypeType">
+   		<xs:restriction base="xs:string">
+   			<xs:enumeration value="MESSAGE">
+   				<xs:annotation>
+   					<xs:documentation>
+   						an  event  that represents a  message  from or  to an instance   2  instances 
+   					</xs:documentation>
+   				</xs:annotation>
+   			</xs:enumeration>
+   			<xs:enumeration value="EVENT">
+   				<xs:annotation>
+   					<xs:documentation>
+   						 a  general  event 
+   					</xs:documentation>
+   				</xs:annotation>
+   			</xs:enumeration>
+   			<xs:enumeration value="INTERNAL_EVENT">
+   				<xs:annotation>
+   					<xs:documentation>
+   						a  general  event 
+   					</xs:documentation>
+   				</xs:annotation>
+   			</xs:enumeration>
+   			<xs:enumeration value="SEQUENCE">
+   				<xs:annotation>
+   					<xs:documentation>
+   						 a  group of  events  that  belong to the  same sequence 
+   					</xs:documentation>
+   				</xs:annotation>
+   			</xs:enumeration>
+   			<xs:enumeration value="SEQUENCE_GROUP">
+   				<xs:annotation>
+   					<xs:documentation>
+   						a  group of  sequences that  belong to the  same  group
+   					</xs:documentation>
+   				</xs:annotation>
+   			</xs:enumeration>
+   		</xs:restriction>
+   </xs:simpleType>
+    
+	<xs:attributeGroup  name="InstanceAttributeGroup">  
+        <xs:attribute name="id" type="xs:string" use="required"/>
+        <xs:attribute  name="name" type="xs:string"/>
+        <xs:attribute name="description" type="xs:string"/>          
+    </xs:attributeGroup >
+
+	<xs:attributeGroup name="EventAttributeGroup">
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="name" type="xs:string"/>
+		<xs:attribute name="eventType" type="EventTypeType" default="MESSAGE"/>
+		<xs:attribute name="srcInstanceId" type="xs:string"/>
+		<xs:attribute name="dstInstanceId" type="xs:string"/>
+		<xs:attribute name="description" type="xs:string"/>
+		<xs:attribute name="sequence_number" type="xs:int"/>
+		<xs:attribute name="end_mark" type="xs:string"/>
+	</xs:attributeGroup>
+	
+	<xs:attributeGroup name="SequenceAttributeGroup">
+		<xs:attribute name="sequenceId">
+			<xs:annotation>
+				<xs:documentation>
+					unique reference  to the  an event  sequence 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		
+		<xs:attribute name="parentSequenceId">
+			<xs:annotation>
+				<xs:documentation>
+					unique reference  to the  parent  or  originating sequence 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="sequenceGroupId">
+			<xs:annotation>
+				<xs:documentation>
+					unique  reference  to a group of  events  or  sequences
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="sequenceName"></xs:attribute>
+		<xs:attribute name="sequenceDescription"></xs:attribute>
+	</xs:attributeGroup>
+    
+   <!-- TBD :  remove  
+   	<xs:attributeGroup  name="EventAttributeGroup">  
+        <xs:attribute  name="end_marker" type="xs:string"/>
+        <xs:attribute name="description" type="xs:string"/>          
+    </xs:attributeGroup >
+-->
+    <xs:attributeGroup name="StrokeAttribute">
+        <xs:attribute name="sf" type="xs:double"/>
+        <xs:attribute name="sw" type="xs:double"/>
+        <xs:attribute name="sh" type="xs:double"/>
+        <xs:attribute name="sc" type="xs:string"/>
+        <xs:attribute name="transparency" type="xs:string"/>
+        <xs:attribute name="fillcolor" type="xs:string"/>
+    </xs:attributeGroup>
+    
+    <xs:attributeGroup name="MarkerAttribute">
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="m" type="xs:string"/>
+    </xs:attributeGroup>  
+    <!-- DefaultReferenceAttribute 
+    
+    	id 
+    	name 
+    	description
+    -->
+
+</xs:schema>

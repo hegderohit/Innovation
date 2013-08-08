@@ -1,0 +1,252 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <rect width="200"
+         height="150"
+         x="100"
+         y="100"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="Sys_Comp1"/>
+   <text id="Sys_CompName_1"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'Sys_CompHidden_1')"
+         onmouseout="hide(evt, 'Sys_CompHidden_1')"
+         x="135"
+         y="130">
+            NAME
+        </text>
+   <g id="Sys_CompHidden_1" visibility="hidden">
+      <text x="145"
+            y="135"
+            font-size="12"
+            font-family="Arial"
+            fill="black"/>
+   </g>
+   <rect width="80"
+         height="40"
+         x="400"
+         y="100"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="sap_1"/>
+   <ellipse rx="40"
+            ry="20"
+            cx="440"
+            cy="120"
+            stroke-width="1"
+            stroke="black"
+            fill="none"
+            id="Eclipsesap_1"/>
+   <text id="SapName_1"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'SapHidden_1')"
+         onmouseout="hide(evt, 'SapHidden_1')"
+         x="420"
+         y="90">
+            SAP
+        </text>
+   <g id="SapHidden_1" visibility="hidden">
+      <text x="430"
+            y="95"
+            font-size="12"
+            font-family="Arial"
+            fill="black"/>
+   </g>
+   <marker orient="auto"
+           id="marker_1"
+           viewBox="-1 -4 10 8"
+           markerWidth="20"
+           markerHeight="10"
+           color="">
+      <path d="M 0 0 L -8 8 L -8 -8 Z"
+            fill="black"
+            stroke="black"
+            stroke-width="1"/>
+   </marker>
+   <line x1="100"
+         y1="400"
+         x2="300"
+         y2="400"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="Link_1"
+         marker-end="url(#marker_1)"/>
+   <text id="LinkName_1"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'LinkHidden_1')"
+         onmouseout="hide(evt, 'LinkHidden_1')"
+         x="200"
+         y="420">
+            Link
+        </text>
+   <g id="LinkHidden_1" visibility="hidden">
+      <text x="190"
+            y="425"
+            font-size="12"
+            font-family="Arial"
+            fill="black"/>
+   </g>
+   <line x1="500"
+         y1="400"
+         x2="700"
+         y2="400"
+         stroke-width="1"
+         stroke="black"
+         fill="none"/>
+   <line x1="500"
+         y1="550"
+         x2="700"
+         y2="550"
+         stroke-width="1"
+         stroke="black"
+         fill="none"/>
+   <path d="M500 400 C 450 450, 450 500, 500 550"
+         stroke="black"
+         fill="transparent"/>
+   <path d="M700 400 C 750 450, 750 500,              700 550"
+         stroke="black"
+         fill="transparent"/>
+   <text id="sys_process_Name1"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'sys_process_Hidden_1')"
+         onmouseout="hide(evt, 'sys_process_Hidden_1')"
+         x="550"
+         y="430">
+           System process
+        </text>
+   <g id="sys_process_Hidden_1" visibility="hidden">
+      <text x="540"
+            y="435"
+            font-size="12"
+            font-family="Arial"
+            fill="black"/>
+   </g>
+   <line x1="600"
+         y1="800"
+         x2="800"
+         y2="800"
+         stroke-width="1"
+         stroke="black"
+         fill="none"/>
+   <line x1="600"
+         y1="950"
+         x2="800"
+         y2="950"
+         stroke-width="1"
+         stroke="black"
+         fill="none"/>
+   <path d="M600 800 C 560 850, 560 900, 600 950"
+         stroke="black"
+         fill="transparent"/>
+   <ellipse ry="75"
+            rx="20"
+            cx="800"
+            cy="875"
+            stroke-width="1"
+            stroke="black"
+            fill="none"
+            id="db_1"/>
+   <text id="db_Name1"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'db_Hidden_1')"
+         onmouseout="hide(evt, 'db_Hidden_1')"
+         x="650"
+         y="830">
+            Database
+        </text>
+   <g id="db_Hidden_1" visibility="hidden">
+      <text x="640"
+            y="835"
+            font-size="12"
+            font-family="Arial"
+            fill="black"/>
+   </g>
+   <rect width="300"
+         height="250"
+         x="800"
+         y="400"
+         stroke-width="1"
+         stroke="black"
+         stroke-dasharray="9, 5"
+         fill="none"
+         id="Sys_Interface1"/>
+   <text id="Sys_InterfaceName_1"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'Sys_InterfaceHidden_1')"
+         onmouseout="hide(evt, 'Sys_InterfaceHidden_1')"
+         x="835"
+         y="430">
+            NAME
+        </text>
+   <g id="Sys_InterfaceHidden_1" visibility="hidden">
+      <text x="845"
+            y="435"
+            font-size="12"
+            font-family="Arial"
+            fill="black"/>
+   </g>
+   <rect width="40"
+         height="80"
+         x="910"
+         y="380"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="sap_2"/>
+   <ellipse rx="20"
+            ry="40"
+            cx="930"
+            cy="420"
+            stroke-width="1"
+            stroke="black"
+            fill="none"
+            id="Eclipsesap_2"/>
+   <text id="SapName_2"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'SapHidden_2')"
+         onmouseout="hide(evt, 'SapHidden_2')"
+         x="920"
+         y="370">
+            SAP
+        </text>
+   <g id="SapHidden_2" visibility="hidden">
+      <text x="930"
+            y="375"
+            font-size="12"
+            font-family="Arial"
+            fill="black"/>
+   </g>
+   <rect width="80"
+         height="40"
+         x="910"
+         y="630"
+         stroke-width="1"
+         stroke="black"
+         fill="none"
+         id="sap_3"/>
+   <ellipse rx="40"
+            ry="20"
+            cx="950"
+            cy="650"
+            stroke-width="1"
+            stroke="black"
+            fill="none"
+            id="Eclipsesap_3"/>
+   <text id="SapName_3"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'SapHidden_3')"
+         onmouseout="hide(evt, 'SapHidden_3')"
+         x="930"
+         y="620">
+            SAP
+        </text>
+   <g id="SapHidden_3" visibility="hidden">
+      <text x="940"
+            y="625"
+            font-size="12"
+            font-family="Arial"
+            fill="black"/>
+   </g>
+</svg>

@@ -724,8 +724,7 @@
 				</xsl:if>
 				<xsl:if test="$tempW &lt; 240">
 					<xsl:value-of select="$tempW"/>
-				</xsl:if>
-				
+				</xsl:if>	
 			</xsl:variable>
 			
 			<!--

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<msd>
+    <instance id="1" name="NAS" description="" sw="1" sf="0" sc="#000000" transparency="none"
+        fillcolor="#ffffff"/>
+    <instance id="2" name="RRC" description="" sw="1" sf="0" sc="#000000" transparency="none"
+        fillcolor="#ffffff"/>
+    <instance id="3" name="ENODEB" description="" sw="1" sf="0" sc="#000000" transparency="none"
+        fillcolor="#ffffff"/>
+
+    <marker id="M1" sw="1" sf="0" sc="#000000" transparency="none" fillcolor="#000000" m="T"/>
+
+    <event id="1" eventType="MESSAGE" name="MIB" description="MIB_Information" srcInstanceId="3"
+        dstInstanceId="2" sequenceId="1" sequence_number="1" end_mark="M1" sw="1" sf="0"
+        sc="#000000" fillcolor="#ffffff"/>
+
+    <event id="2" eventType="MESSAGE" name="SIB" description="SIB_Information" srcInstanceId="3"
+        dstInstanceId="2" sequenceId="1" sequence_number="2" end_mark="M1" sw="1" sf="0"
+        sc="#000000" fillcolor="#ffffff"/>
+
+    <event id="3" eventType="MESSAGE" name="rrcConnectionRequest" description="rrcConnectionRequest"
+        srcInstanceId="2" dstInstanceId="3" sequenceId="3" sequence_number="3" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+
+    <event id="4" eventType="MESSAGE" name="rrcConnectionSetup" description="rrcConnectionSetup"
+        srcInstanceId="3" dstInstanceId="2" sequenceId="4" sequence_number="4" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+
+
+    <event id="5" eventType="MESSAGE" name="RRC_CONNECTION_INDICATION" description="RRC_CONNECTION_INDICATION"
+        srcInstanceId="2" dstInstanceId="1" sequenceId="4" sequence_number="5" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+
+    <event id="5.1" eventType="MESSAGE" name="NAS ATTACH REQUEST" description="NAS ATTACH REQUEST"
+        srcInstanceId="1" dstInstanceId="2" sequenceId="1" sequence_number="6" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+
+    <event id="4.1" eventType="MESSAGE" name="rrcConnectionSetupComplete" description="rrcConnectionSetupComplete"
+        srcInstanceId="2" dstInstanceId="3" sequenceId="1" sequence_number="7" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+    <event id="6" eventType="MESSAGE" name="dlInformationTransfer" description="dlInformationTransfer"
+        srcInstanceId="3" dstInstanceId="2" sequenceId="1" sequence_number="8" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+    <event id="7" eventType="MESSAGE" name="NAS:AunthenticationRequest" description="NAS:AunthenticationRequest"
+        srcInstanceId="2" dstInstanceId="1" sequenceId="1" sequence_number="9" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    <event id="7.1" eventType="MESSAGE" name="NAS:AunthenticationResponse" description="NAS:AunthenticationResponse"
+        srcInstanceId="1" dstInstanceId="2" sequenceId="1" sequence_number="10" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+    <event id="8" eventType="MESSAGE" name="rrculInformationTransfer" description="rrculInformationTransfer"
+        srcInstanceId="2" dstInstanceId="3" sequenceId="1" sequence_number="11" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+    <event id="9" eventType="MESSAGE" name="rrcdlInformationTransfer" description="rrcdlInformationTransfer"
+        srcInstanceId="3" dstInstanceId="2" sequenceId="1" sequence_number="12" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+    <event id="10" eventType="MESSAGE" name="nassecuritymodecommand" description="nassecuritymodecommand"
+        srcInstanceId="2" dstInstanceId="1" sequenceId="1" sequence_number="13" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    <event id="10.1" eventType="MESSAGE" name="nassecuritymoderesponse" description="nassecuritymoderesponse"
+        srcInstanceId="1" dstInstanceId="2" sequenceId="1" sequence_number="14" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+   
+    <event id="11" eventType="MESSAGE" name="rrculinformationtransfer" description="rrculinformationtransfer"
+        srcInstanceId="2" dstInstanceId="3" sequenceId="1" sequence_number="15" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+    <event id="12" eventType="MESSAGE" name="rrcseuritymodecommand" description="rrcseuritymodecommand"
+        srcInstanceId="3" dstInstanceId="2" sequenceId="1" sequence_number="16" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    <event id="12.1" eventType="MESSAGE" name="rrcseuritymoderesponse" description="rrcseuritymoderesponse"
+        srcInstanceId="2" dstInstanceId="3" sequenceId="1" sequence_number="17" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+    <event id="13" eventType="MESSAGE" name="rrcue-capabilityEnquiry" description="rrcue-capabilityEnquiry"
+        srcInstanceId="3" dstInstanceId="2" sequenceId="1" sequence_number="18" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    <event id="13.1" eventType="MESSAGE" name="ue-capabilityInformation" description="ue-capabilityInformation"
+        srcInstanceId="2" dstInstanceId="3" sequenceId="1" sequence_number="19" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+    <event id="14" eventType="MESSAGE" name="RRCconnectionreonfiguration" description="RRCconnectionreonfiguration"
+        srcInstanceId="3" dstInstanceId="2" sequenceId="1" sequence_number="20" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+    <event id="15" eventType="MESSAGE" name="NASATTACHACCEPT" description="NASATTACHACCEPT"
+        srcInstanceId="3" dstInstanceId="2" sequenceId="1" sequence_number="21" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    <event id="14.1" eventType="MESSAGE" name="RRCconnectionreonfigcomplete" description="RRCconnectionreonfigcomplete"
+        srcInstanceId="2" dstInstanceId="3" sequenceId="1" sequence_number="22" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+    <event id="16" eventType="MESSAGE" name="AttachComplete" description="AttachComplete"
+        srcInstanceId="1" dstInstanceId="2" sequenceId="1" sequence_number="23" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+    <event id="17" eventType="MESSAGE" name="RRCulinformationtransfer" description="RRCulinformationtransfer"
+        srcInstanceId="2" dstInstanceId="3" sequenceId="1" sequence_number="24" end_mark="M1" sw="1"
+        sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+</msd>

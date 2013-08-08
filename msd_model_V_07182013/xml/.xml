@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<msd xmlns="http://www.innovation3g.com/msd" xmlns:msd="http://www.innovation3g.com/msd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.innovation3g.com/msd ../xsd/msd_sample_V_07262013.xsd">
+    
+    <instance id="1" name="Instance 1" description="Head 1" sw="1" sf="0" sc="#000000"
+        transparency="none" fillcolor="#ffffff"/>
+    <instance id="2" name="Instance 2" description="Head 2" sw="1" sf="0" sc="#000000"
+        transparency="none" fillcolor="#ffffff"/>
+    <instance id="3" name="Instance 3" description="Head 3" sw="1" sf="0" sc="#000000"
+        transparency="none" fillcolor="#ffffff"/>
+    
+    <event id="1" eventType="MESSAGE" description="Messgae 1" srcInstanceId="1" dstInstanceId="26"
+        sequenceId="1" sequence_number="1" end_mark="M1" sw="1" sf="0" sc="#000000" fillcolor="#ffffff"/>
+    
+    
+</msd>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <script type="text/javascript">
+				
+		function show(evt, node)
+		{
+        var svgdoc = evt.target.ownerDocument;
+        var obj = svgdoc.getElementById(node);
+        obj.setAttribute("visibility", "visible");
+		}
+
+		function hide(evt, node)
+		{
+        var svgdoc = evt.target.ownerDocument;
+        var obj = svgdoc.getElementById(node);
+        obj.setAttribute("visibility" , "hidden");
+		}
+		</script>
