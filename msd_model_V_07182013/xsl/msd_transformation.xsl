@@ -690,7 +690,7 @@
         <xsl:param name="name"/>
         <xsl:param name="start_filter"/>
         <xsl:variable name="temp_name" select="concat($seq_num ,'.')"/>
-        <text id="{$id1}" style="font-size:20;font-style:normal;fill:#000000;"
+        <text id="{$id1}" style="font-size:11;font-style:normal;fill:#000000;"
             onmouseover="show(evt, '{$id2}')" onmouseout="hide(evt, '{$id2}')" x="{$x + 10}" y="{$y}">  <xsl:value-of select="concat($temp_name,$name)"/>
         </text>
         <g id="{$id2}" visibility="hidden" >

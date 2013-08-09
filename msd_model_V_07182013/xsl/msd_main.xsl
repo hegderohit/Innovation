@@ -31,6 +31,7 @@
                     -> Determine the  maximum  number of  events  per  container  : $containerEventsCount 
                     -> Determine the number of events in the  MSD  : $msdEventsCount
                     -> Determine the number of  display  containers ( svg files ) : $countDisplayContainers
+                    -> using the ref Spacing between the events
                          
                 3) Calling the msd_transformation in a loop        
         		    -> now create  a loop, in each  loop  determine the start and  end  sequence number 
@@ -54,30 +55,35 @@
         
         <xsl:param name="component1_px" select="5"/>
         <xsl:param name="component1_py" select="5"/>
-        <xsl:param name="component1_w" select="1500"/>
-        <xsl:param name="component1_h" select="1200"/>
+        <xsl:param name="component1_w" select="500"/>
+        <xsl:param name="component1_h" select="700"/>
         <xsl:param name="maxW" select="240"/>
         <xsl:param name="maxH" select="200"/>
         <xsl:param name="maxL" select="150"/>
         
-        
+        <xsl:variable name="event_spacing" select="25"/>
+        <xsl:variable name="model_refL" select="100"/>
+        <xsl:variable name="model_refW" select="140"/>
+        <xsl:variable name="model_refH" select="50"/>
+        <xsl:variable name="component_refW" select="1000"/>
+        <xsl:variable name="component_refH" select="1000"/>
         
         <!-- Auto ResizeLogic -->
         <xsl:variable name="perdiff_w">
-            <xsl:if test="$component1_w >= 1200">
-                <xsl:value-of select="($component1_w - 1200) div 1200"/>
+            <xsl:if test="$component1_w >= $component_refW">
+                <xsl:value-of select="($component1_w - $component_refW) div $component_refW"/>
             </xsl:if>
-            <xsl:if test="$component1_w &lt; 1200">
-                <xsl:value-of select="(1200 - $component1_w) div 1200"/>
+            <xsl:if test="$component1_w &lt; $component_refW">
+                <xsl:value-of select="($component_refW - $component1_w) div $component_refW"/>
             </xsl:if>              
         </xsl:variable>
         
         <xsl:variable name="perdiff_h">
-            <xsl:if test="$component1_h >= 1000">
-                <xsl:value-of select="($component1_w - 1000) div 1000"/>
+            <xsl:if test="$component1_h >= $component_refH">
+                <xsl:value-of select="($component1_h - $component_refH) div $component_refH"/>
             </xsl:if>
-            <xsl:if test="$component1_w &lt; 1000">
-                <xsl:value-of select="(1000 - $component1_w) div 1000"/>
+            <xsl:if test="$component1_h &lt; $component_refH">
+                <xsl:value-of select="($component_refH - $component1_h) div $component_refH"/>
             </xsl:if>               
         </xsl:variable>
               
@@ -87,33 +93,34 @@
             Desc : Actuall width of the model with reference to the screen size
         -->
         <xsl:variable name="tempW">
-            <xsl:if test="$component1_w >= 1200">
-                <xsl:value-of select="(140) + (140 * $perdiff_w)"/>
+            <xsl:if test="$component1_w >= $component_refW">
+                <xsl:value-of select="($model_refW) + ($model_refW * $perdiff_w)"/>
             </xsl:if>
-            <xsl:if test="$component1_w &lt; 1200">
-                <xsl:value-of select="(140) - (140 * $perdiff_w)"/>
+            <xsl:if test="$component1_w &lt; $component_refW">
+                <xsl:value-of select="($model_refW) - ($model_refW * $perdiff_w)"/>
             </xsl:if>
         </xsl:variable>
+        
         <xsl:variable name="actualW">
             <xsl:if test="$tempW >= $maxW">
                 <xsl:value-of select="$maxW"/>
             </xsl:if>
             <xsl:if test="$tempW &lt; $maxW">
                 <xsl:value-of select="$tempW"/>
-            </xsl:if>   
-            
+            </xsl:if>      
         </xsl:variable>
+        
         <!--
             Type : Variable
             Name : actualH
             Desc : Actuall height of the model with reference to the screen size
         -->
         <xsl:variable name="temph">
-            <xsl:if test="$component1_h > 1000">
-                <xsl:value-of select="(100) + (100 * $perdiff_w)"/>
+            <xsl:if test="$component1_h > $component_refH">
+                <xsl:value-of select="($model_refH) + ($model_refH * $perdiff_h)"/>
             </xsl:if>
-            <xsl:if test="$component1_h &lt; 1000">
-                <xsl:value-of select="(100) - (100 * $perdiff_w)"/>
+            <xsl:if test="$component1_h &lt; $component_refH">
+                <xsl:value-of select="($model_refH) - ($model_refH * $perdiff_h)"/>
             </xsl:if>
         </xsl:variable>
         
@@ -131,22 +138,25 @@
             Desc : Actuall Spacing between the model with reference to the screen size
         -->
         <xsl:variable name="tempL">
-            <xsl:if test="$component1_w &gt; 1200">
-                <xsl:value-of select="50 + ($perdiff_w * 50)"/>
+            <xsl:if test="$component1_w &gt; $component_refW">
+                <xsl:value-of select="$model_refL + ($perdiff_w * $model_refL)"/>
             </xsl:if>
-            <xsl:if test="$component1_w &lt; 1200">
-                <xsl:value-of select="50 - ($perdiff_w * 50)"/>
+            <xsl:if test="$component1_w &lt; $component_refW">
+                <xsl:value-of select="$model_refL - ($model_refL * $perdiff_w)"/>
             </xsl:if>               
         </xsl:variable>
         
         <xsl:variable name="actualL">
-            <xsl:if test="$tempW >= 100">
-                <xsl:value-of select="100"/>
+            <xsl:if test="$tempL >= $maxL">
+                <xsl:value-of select="$maxL"/>
             </xsl:if>
-            <xsl:if test="$tempW &lt; 100">
+            <xsl:if test="$tempL &lt; $maxL">
                 <xsl:value-of select="$tempL"/>
             </xsl:if>
         </xsl:variable>
+        
+        <xsl:variable name="model_seq_length" select="($component1_h div 2)"/>
+        
         
         <!-- Filter Variables decides on what factor the svg must be filtered -->
         <xsl:variable name="filter">
@@ -158,24 +168,12 @@
             </instance>
         </xsl:variable>
         
-        <xsl:variable name="tempcontainerEventsCount">
-            <xsl:if test="$component1_h &gt; 1000">
-                <xsl:value-of select="6 + ($perdiff_w * 6)"/>
-            </xsl:if>
-            <xsl:if test="$component1_h &lt; 1000">
-                <xsl:value-of select="6 - ($perdiff_w * 6)"/>
-            </xsl:if>      
-        </xsl:variable>
+      
         
         
         <!-- The Maximum number of EVents inside the container formuale goes in here -->  
         <xsl:variable name="containerEventsCount">
-            <xsl:if test="$tempcontainerEventsCount >= 6">
-                <xsl:value-of select="6"/>
-            </xsl:if>
-            <xsl:if test="$tempcontainerEventsCount &lt; 6">
-                <xsl:value-of select="$tempcontainerEventsCount"/>
-            </xsl:if>
+           <xsl:value-of select="$model_seq_length div $event_spacing"/>
         </xsl:variable>
         
         <xsl:variable name="msdEventsCount">
@@ -188,7 +186,7 @@
         
         <xsl:variable name="currentMsd" select="."/>
         
-
+        <!--  -->
         <xsl:for-each select="( 1 to $countDisplayContainers)">
             
             <xsl:variable name="filename" select="concat('msd_',position(),'.svg')"/>

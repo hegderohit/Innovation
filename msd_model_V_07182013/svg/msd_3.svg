@@ -15,10 +15,10 @@
         obj.setAttribute("visibility" , "hidden");
 		}
 		</script>
-   <rect width="175"
-         height="125"
-         x="287.5"
-         y="212.5"
+   <rect width="70"
+         height="35"
+         x="90"
+         y="105"
          stroke-width="1"
          stroke="#000000"
          fill="none"
@@ -27,11 +27,11 @@
          style="font-size:20;font-style:normal;fill:#000000;"
          onmouseover="show(evt, 'DescHide_State_1')"
          onmouseout="hide(evt, 'DescHide_State_1')"
-         x="312.5"
-         y="275">.NAS</text>
+         x="115"
+         y="122.5">.NAS</text>
    <g id="DescHide_State_1" visibility="hidden">
-      <text x="312.5"
-            y="280"
+      <text x="115"
+            y="127.5"
             font-size="12"
             font-family="Arial"
             fill="black">Hidden Text....</text>
@@ -40,19 +40,19 @@
          style="font-size:20;font-style:normal;fill:#000000;"
          onmouseover="show(evt, 'NameHide_State_1')"
          onmouseout="hide(evt, 'NameHide_State_1')"
-         x="307.5"
-         y="306.25">.</text>
+         x="110"
+         y="131.25">.</text>
    <g id="NameHide_State_1" visibility="hidden">
-      <text x="307.5"
-            y="311.25"
+      <text x="110"
+            y="136.25"
             font-size="12"
             font-family="Arial"
             fill="black">Hidden Text....</text>
    </g>
-   <rect width="175"
-         height="125"
-         x="662.5"
-         y="212.5"
+   <rect width="70"
+         height="35"
+         x="215"
+         y="105"
          stroke-width="1"
          stroke="#000000"
          fill="none"
@@ -61,11 +61,11 @@
          style="font-size:20;font-style:normal;fill:#000000;"
          onmouseover="show(evt, 'DescHide_State_2')"
          onmouseout="hide(evt, 'DescHide_State_2')"
-         x="687.5"
-         y="275">.RRC</text>
+         x="240"
+         y="122.5">.RRC</text>
    <g id="DescHide_State_2" visibility="hidden">
-      <text x="687.5"
-            y="280"
+      <text x="240"
+            y="127.5"
             font-size="12"
             font-family="Arial"
             fill="black">Hidden Text....</text>
@@ -74,19 +74,19 @@
          style="font-size:20;font-style:normal;fill:#000000;"
          onmouseover="show(evt, 'NameHide_State_2')"
          onmouseout="hide(evt, 'NameHide_State_2')"
-         x="682.5"
-         y="306.25">.</text>
+         x="235"
+         y="131.25">.</text>
    <g id="NameHide_State_2" visibility="hidden">
-      <text x="682.5"
-            y="311.25"
+      <text x="235"
+            y="136.25"
             font-size="12"
             font-family="Arial"
             fill="black">Hidden Text....</text>
    </g>
-   <rect width="175"
-         height="125"
-         x="1037.5"
-         y="212.5"
+   <rect width="70"
+         height="35"
+         x="340"
+         y="105"
          stroke-width="1"
          stroke="#000000"
          fill="none"
@@ -95,11 +95,11 @@
          style="font-size:20;font-style:normal;fill:#000000;"
          onmouseover="show(evt, 'DescHide_State_3')"
          onmouseout="hide(evt, 'DescHide_State_3')"
-         x="1062.5"
-         y="275">.ENODEB</text>
+         x="365"
+         y="122.5">.ENODEB</text>
    <g id="DescHide_State_3" visibility="hidden">
-      <text x="1062.5"
-            y="280"
+      <text x="365"
+            y="127.5"
             font-size="12"
             font-family="Arial"
             fill="black">Hidden Text....</text>
@@ -108,31 +108,31 @@
          style="font-size:20;font-style:normal;fill:#000000;"
          onmouseover="show(evt, 'NameHide_State_3')"
          onmouseout="hide(evt, 'NameHide_State_3')"
-         x="1057.5"
-         y="306.25">.</text>
+         x="360"
+         y="131.25">.</text>
    <g id="NameHide_State_3" visibility="hidden">
-      <text x="1057.5"
-            y="311.25"
+      <text x="360"
+            y="136.25"
             font-size="12"
             font-family="Arial"
             fill="black">Hidden Text....</text>
    </g>
-   <line x1="375"
-         y1="337.5"
-         x2="375"
-         y2="937.5"
+   <line x1="125"
+         y1="140"
+         x2="125"
+         y2="490"
          stroke="#000000"
          id="Line_1"/>
-   <line x1="750"
-         y1="337.5"
-         x2="750"
-         y2="937.5"
+   <line x1="250"
+         y1="140"
+         x2="250"
+         y2="490"
          stroke="#000000"
          id="Line_2"/>
-   <line x1="1125"
-         y1="337.5"
-         x2="1125"
-         y2="937.5"
+   <line x1="375"
+         y1="140"
+         x2="375"
+         y2="490"
          stroke="#000000"
          id="Line_3"/>
    <marker orient="auto"
@@ -146,108 +146,148 @@
             stroke="#000000"
             stroke-width="1"/>
    </marker>
-   <line x1="750"
-         y1="423.2142857142857"
-         x2="375"
-         y2="423.2142857142857"
-         id="Message_10"
+   <line x1="375"
+         y1="157.94871794871796"
+         x2="250"
+         y2="157.94871794871796"
+         id="Message_13"
          stroke="black"
          marker-end="url(#M1)"/>
-   <text id="MessDesc_Message_10"
+   <text id="MessDesc_Message_13"
          style="font-size:20;font-style:normal;fill:#000000;"
-         onmouseover="show(evt, 'MessDescHide_Message_10')"
-         onmouseout="hide(evt, 'MessDescHide_Message_10')"
-         x="572.5"
-         y="418.2142857142857">13.nassecuritymodecommand</text>
-   <g id="MessDescHide_Message_10" visibility="hidden">
-      <text x="572.5"
-            y="423.2142857142857"
+         onmouseover="show(evt, 'MessDescHide_Message_13')"
+         onmouseout="hide(evt, 'MessDescHide_Message_13')"
+         x="322.5"
+         y="152.94871794871796">18.rrcue-capabilityEnquiry</text>
+   <g id="MessDescHide_Message_13" visibility="hidden">
+      <text x="322.5"
+            y="157.94871794871796"
+            font-size="12"
+            font-family="Arial"
+            fill="black">Hidden Text....</text>
+   </g>
+   <line x1="250"
+         y1="193.84615384615384"
+         x2="375"
+         y2="193.84615384615384"
+         id="Message_13.1"
+         stroke="black"
+         marker-end="url(#M1)"/>
+   <text id="MessDesc_Message_13.1"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'MessDescHide_Message_13.1')"
+         onmouseout="hide(evt, 'MessDescHide_Message_13.1')"
+         x="291.25"
+         y="188.84615384615384">19.ue-capabilityInformation</text>
+   <g id="MessDescHide_Message_13.1" visibility="hidden">
+      <text x="291.25"
+            y="193.84615384615384"
             font-size="12"
             font-family="Arial"
             fill="black">Hidden Text....</text>
    </g>
    <line x1="375"
-         y1="508.92857142857144"
-         x2="750"
-         y2="508.92857142857144"
-         id="Message_10.1"
+         y1="229.74358974358975"
+         x2="250"
+         y2="229.74358974358975"
+         id="Message_14"
          stroke="black"
          marker-end="url(#M1)"/>
-   <text id="MessDesc_Message_10.1"
+   <text id="MessDesc_Message_14"
          style="font-size:20;font-style:normal;fill:#000000;"
-         onmouseover="show(evt, 'MessDescHide_Message_10.1')"
-         onmouseout="hide(evt, 'MessDescHide_Message_10.1')"
-         x="478.75"
-         y="503.92857142857144">14.nassecuritymoderesponse</text>
-   <g id="MessDescHide_Message_10.1" visibility="hidden">
-      <text x="478.75"
-            y="508.92857142857144"
+         onmouseover="show(evt, 'MessDescHide_Message_14')"
+         onmouseout="hide(evt, 'MessDescHide_Message_14')"
+         x="322.5"
+         y="224.74358974358975">20.RRCconnectionreonfiguration</text>
+   <g id="MessDescHide_Message_14" visibility="hidden">
+      <text x="322.5"
+            y="229.74358974358975"
             font-size="12"
             font-family="Arial"
             fill="black">Hidden Text....</text>
    </g>
-   <line x1="750"
-         y1="594.6428571428571"
-         x2="1125"
-         y2="594.6428571428571"
-         id="Message_11"
+   <line x1="375"
+         y1="265.64102564102564"
+         x2="250"
+         y2="265.64102564102564"
+         id="Message_15"
          stroke="black"
          marker-end="url(#M1)"/>
-   <text id="MessDesc_Message_11"
+   <text id="MessDesc_Message_15"
          style="font-size:20;font-style:normal;fill:#000000;"
-         onmouseover="show(evt, 'MessDescHide_Message_11')"
-         onmouseout="hide(evt, 'MessDescHide_Message_11')"
-         x="947.5"
-         y="589.6428571428571">15.rrculinformationtransfer</text>
-   <g id="MessDescHide_Message_11" visibility="hidden">
-      <text x="947.5"
-            y="594.6428571428571"
+         onmouseover="show(evt, 'MessDescHide_Message_15')"
+         onmouseout="hide(evt, 'MessDescHide_Message_15')"
+         x="322.5"
+         y="260.64102564102564">21.NASATTACHACCEPT</text>
+   <g id="MessDescHide_Message_15" visibility="hidden">
+      <text x="322.5"
+            y="265.64102564102564"
             font-size="12"
             font-family="Arial"
             fill="black">Hidden Text....</text>
    </g>
-   <line x1="1125"
-         y1="680.3571428571429"
-         x2="750"
-         y2="680.3571428571429"
-         id="Message_12"
+   <line x1="250"
+         y1="301.53846153846155"
+         x2="375"
+         y2="301.53846153846155"
+         id="Message_14.1"
          stroke="black"
          marker-end="url(#M1)"/>
-   <text id="MessDesc_Message_12"
+   <text id="MessDesc_Message_14.1"
          style="font-size:20;font-style:normal;fill:#000000;"
-         onmouseover="show(evt, 'MessDescHide_Message_12')"
-         onmouseout="hide(evt, 'MessDescHide_Message_12')"
-         x="1041.25"
-         y="675.3571428571429">16.rrcseuritymodecommand</text>
-   <g id="MessDescHide_Message_12" visibility="hidden">
-      <text x="1041.25"
-            y="680.3571428571429"
+         onmouseover="show(evt, 'MessDescHide_Message_14.1')"
+         onmouseout="hide(evt, 'MessDescHide_Message_14.1')"
+         x="291.25"
+         y="296.53846153846155">22.RRCconnectionreonfigcomplete</text>
+   <g id="MessDescHide_Message_14.1" visibility="hidden">
+      <text x="291.25"
+            y="301.53846153846155"
             font-size="12"
             font-family="Arial"
             fill="black">Hidden Text....</text>
    </g>
-   <line x1="750"
-         y1="766.0714285714286"
-         x2="1125"
-         y2="766.0714285714286"
-         id="Message_12.1"
+   <line x1="125"
+         y1="337.43589743589746"
+         x2="250"
+         y2="337.43589743589746"
+         id="Message_16"
          stroke="black"
          marker-end="url(#M1)"/>
-   <text id="MessDesc_Message_12.1"
+   <text id="MessDesc_Message_16"
          style="font-size:20;font-style:normal;fill:#000000;"
-         onmouseover="show(evt, 'MessDescHide_Message_12.1')"
-         onmouseout="hide(evt, 'MessDescHide_Message_12.1')"
-         x="947.5"
-         y="761.0714285714286">17.rrcseuritymoderesponse</text>
-   <g id="MessDescHide_Message_12.1" visibility="hidden">
-      <text x="947.5"
-            y="766.0714285714286"
+         onmouseover="show(evt, 'MessDescHide_Message_16')"
+         onmouseout="hide(evt, 'MessDescHide_Message_16')"
+         x="166.25"
+         y="332.43589743589746">23.AttachComplete</text>
+   <g id="MessDescHide_Message_16" visibility="hidden">
+      <text x="166.25"
+            y="337.43589743589746"
             font-size="12"
             font-family="Arial"
             fill="black">Hidden Text....</text>
    </g>
-   <rect width="1500"
-         height="1200"
+   <line x1="250"
+         y1="373.33333333333337"
+         x2="375"
+         y2="373.33333333333337"
+         id="Message_17"
+         stroke="black"
+         marker-end="url(#M1)"/>
+   <text id="MessDesc_Message_17"
+         style="font-size:20;font-style:normal;fill:#000000;"
+         onmouseover="show(evt, 'MessDescHide_Message_17')"
+         onmouseout="hide(evt, 'MessDescHide_Message_17')"
+         x="291.25"
+         y="368.33333333333337">24.RRCulinformationtransfer</text>
+   <g id="MessDescHide_Message_17" visibility="hidden">
+      <text x="291.25"
+            y="373.33333333333337"
+            font-size="12"
+            font-family="Arial"
+            fill="black">Hidden Text....</text>
+   </g>
+   <rect width="500"
+         height="700"
          x="5"
          y="5"
          stroke-width="1"
