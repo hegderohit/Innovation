@@ -148,99 +148,99 @@
    </marker>
    <line x1="750"
          y1="423.2142857142857"
-         x2="375"
+         x2="1125"
          y2="423.2142857142857"
-         id="Message_10"
+         id="Message_13.1"
          stroke="black"
          marker-end="url(#M1)"/>
-   <text id="MessDesc_Message_10"
+   <text id="MessDesc_Message_13.1"
          style="font-size:20;font-style:normal;fill:#000000;"
-         onmouseover="show(evt, 'MessDescHide_Message_10')"
-         onmouseout="hide(evt, 'MessDescHide_Message_10')"
-         x="572.5"
-         y="418.2142857142857">13.nassecuritymodecommand</text>
-   <g id="MessDescHide_Message_10" visibility="hidden">
-      <text x="572.5"
+         onmouseover="show(evt, 'MessDescHide_Message_13.1')"
+         onmouseout="hide(evt, 'MessDescHide_Message_13.1')"
+         x="947.5"
+         y="418.2142857142857">19.ue-capabilityInformation</text>
+   <g id="MessDescHide_Message_13.1" visibility="hidden">
+      <text x="947.5"
             y="423.2142857142857"
             font-size="12"
             font-family="Arial"
             fill="black">Hidden Text....</text>
    </g>
-   <line x1="375"
+   <line x1="1125"
          y1="508.92857142857144"
          x2="750"
          y2="508.92857142857144"
-         id="Message_10.1"
+         id="Message_14"
          stroke="black"
          marker-end="url(#M1)"/>
-   <text id="MessDesc_Message_10.1"
+   <text id="MessDesc_Message_14"
          style="font-size:20;font-style:normal;fill:#000000;"
-         onmouseover="show(evt, 'MessDescHide_Message_10.1')"
-         onmouseout="hide(evt, 'MessDescHide_Message_10.1')"
-         x="478.75"
-         y="503.92857142857144">14.nassecuritymoderesponse</text>
-   <g id="MessDescHide_Message_10.1" visibility="hidden">
-      <text x="478.75"
+         onmouseover="show(evt, 'MessDescHide_Message_14')"
+         onmouseout="hide(evt, 'MessDescHide_Message_14')"
+         x="1041.25"
+         y="503.92857142857144">20.RRCconnectionreonfiguration</text>
+   <g id="MessDescHide_Message_14" visibility="hidden">
+      <text x="1041.25"
             y="508.92857142857144"
             font-size="12"
             font-family="Arial"
             fill="black">Hidden Text....</text>
    </g>
-   <line x1="750"
+   <line x1="1125"
          y1="594.6428571428571"
-         x2="1125"
+         x2="750"
          y2="594.6428571428571"
-         id="Message_11"
+         id="Message_15"
          stroke="black"
          marker-end="url(#M1)"/>
-   <text id="MessDesc_Message_11"
+   <text id="MessDesc_Message_15"
          style="font-size:20;font-style:normal;fill:#000000;"
-         onmouseover="show(evt, 'MessDescHide_Message_11')"
-         onmouseout="hide(evt, 'MessDescHide_Message_11')"
-         x="947.5"
-         y="589.6428571428571">15.rrculinformationtransfer</text>
-   <g id="MessDescHide_Message_11" visibility="hidden">
-      <text x="947.5"
+         onmouseover="show(evt, 'MessDescHide_Message_15')"
+         onmouseout="hide(evt, 'MessDescHide_Message_15')"
+         x="1041.25"
+         y="589.6428571428571">21.NASATTACHACCEPT</text>
+   <g id="MessDescHide_Message_15" visibility="hidden">
+      <text x="1041.25"
             y="594.6428571428571"
             font-size="12"
             font-family="Arial"
             fill="black">Hidden Text....</text>
    </g>
-   <line x1="1125"
+   <line x1="750"
          y1="680.3571428571429"
-         x2="750"
+         x2="1125"
          y2="680.3571428571429"
-         id="Message_12"
+         id="Message_14.1"
          stroke="black"
          marker-end="url(#M1)"/>
-   <text id="MessDesc_Message_12"
+   <text id="MessDesc_Message_14.1"
          style="font-size:20;font-style:normal;fill:#000000;"
-         onmouseover="show(evt, 'MessDescHide_Message_12')"
-         onmouseout="hide(evt, 'MessDescHide_Message_12')"
-         x="1041.25"
-         y="675.3571428571429">16.rrcseuritymodecommand</text>
-   <g id="MessDescHide_Message_12" visibility="hidden">
-      <text x="1041.25"
+         onmouseover="show(evt, 'MessDescHide_Message_14.1')"
+         onmouseout="hide(evt, 'MessDescHide_Message_14.1')"
+         x="947.5"
+         y="675.3571428571429">22.RRCconnectionreonfigcomplete</text>
+   <g id="MessDescHide_Message_14.1" visibility="hidden">
+      <text x="947.5"
             y="680.3571428571429"
             font-size="12"
             font-family="Arial"
             fill="black">Hidden Text....</text>
    </g>
-   <line x1="750"
+   <line x1="375"
          y1="766.0714285714286"
-         x2="1125"
+         x2="750"
          y2="766.0714285714286"
-         id="Message_12.1"
+         id="Message_16"
          stroke="black"
          marker-end="url(#M1)"/>
-   <text id="MessDesc_Message_12.1"
+   <text id="MessDesc_Message_16"
          style="font-size:20;font-style:normal;fill:#000000;"
-         onmouseover="show(evt, 'MessDescHide_Message_12.1')"
-         onmouseout="hide(evt, 'MessDescHide_Message_12.1')"
-         x="947.5"
-         y="761.0714285714286">17.rrcseuritymoderesponse</text>
-   <g id="MessDescHide_Message_12.1" visibility="hidden">
-      <text x="947.5"
+         onmouseover="show(evt, 'MessDescHide_Message_16')"
+         onmouseout="hide(evt, 'MessDescHide_Message_16')"
+         x="478.75"
+         y="761.0714285714286">23.AttachComplete</text>
+   <g id="MessDescHide_Message_16" visibility="hidden">
+      <text x="478.75"
             y="766.0714285714286"
             font-size="12"
             font-family="Arial"

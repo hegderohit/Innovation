@@ -23,11 +23,7 @@
     <xsl:param name="maxW" select="240"/>
     <xsl:param name="maxH" select="200"/>
     <xsl:param name="maxL" select="150"/>
-    
-    
-    
-    
-    
+       
     
     <xsl:function name="func:getRecord" as="item()*">
         <xsl:param name="states"/>
@@ -107,7 +103,7 @@
     
     
     
-    <xsl:template name="process_fsm" match="msd">
+    <xsl:template name="process_msd" match="msd">
         
 		<xsl:param name="component1_px" />
 		<xsl:param name="component1_py" />
@@ -118,11 +114,12 @@
 		<!-- 
         Parametrs Defining the Upper limit for model size
     -->
-		<xsl:param name="maxW" />
-		<xsl:param name="maxH" />
-		<xsl:param name="maxL" />
+        <xsl:param name="actualL" />
+        <xsl:param name="actualH" />
+        <xsl:param name="actualW" />
         <xsl:param name="start_filter"/>
         <xsl:param name="end_filter"/>
+        <xsl:param name="param_msd"/>
 
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" >
 			
@@ -143,98 +140,9 @@
 		}
 		</script>
             
-            
-            
-            
-            <!-- Auto Sizing Logic -->
-            <xsl:variable name="perdiff_w">
-                <xsl:if test="$component1_w >= 1200">
-                    <xsl:value-of select="($component1_w - 1200) div 1200"/>
-                </xsl:if>
-                <xsl:if test="$component1_w &lt; 1200">
-                    <xsl:value-of select="(1200 - $component1_w) div 1200"/>
-                </xsl:if>              
-            </xsl:variable>
-            
-            <xsl:variable name="perdiff_h">
-                <xsl:if test="$component1_h >= 1000">
-                    <xsl:value-of select="($component1_w - 1000) div 1000"/>
-                </xsl:if>
-                <xsl:if test="$component1_w &lt; 1000">
-                    <xsl:value-of select="(1000 - $component1_w) div 1000"/>
-                </xsl:if>               
-            </xsl:variable>
-            
- 
-			<!--
-            Type : Variable
-            Name : actualW
-            Desc : Actuall width of the model with reference to the screen size
-        -->
-            <xsl:variable name="tempW">
-                <xsl:if test="$component1_w >= 1200">
-                    <xsl:value-of select="(140) + (140 * $perdiff_w)"/>
-                </xsl:if>
-                <xsl:if test="$component1_w &lt; 1200">
-                    <xsl:value-of select="(140) - (140 * $perdiff_w)"/>
-                </xsl:if>
-            </xsl:variable>
-			<xsl:variable name="actualW">
-			    <xsl:if test="$tempW >= $maxW">
-			    <xsl:value-of select="$maxW"/>
-			    </xsl:if>
-			    <xsl:if test="$tempW &lt; $maxW">
-			        <xsl:value-of select="$tempW"/>
-			    </xsl:if>   
-				
-			</xsl:variable>
-			<!--
-            Type : Variable
-            Name : actualH
-            Desc : Actuall height of the model with reference to the screen size
-        -->
-            <xsl:variable name="temph">
-                <xsl:if test="$component1_h > 1000">
-                    <xsl:value-of select="(100) + (100 * $perdiff_w)"/>
-                </xsl:if>
-                <xsl:if test="$component1_h &lt; 1000">
-                    <xsl:value-of select="(100) - (100 * $perdiff_w)"/>
-                </xsl:if>
-            </xsl:variable>
-            
-            <xsl:variable name="actualH">
-                <xsl:if test="$temph >= $maxH">
-                <xsl:value-of select="$maxH"/>
-                </xsl:if>
-                <xsl:if test="$temph &lt; $maxH">
-                    <xsl:value-of select="$temph"/>
-                </xsl:if>   
-            </xsl:variable>
-			<!--
-            Type : Variable
-            Name : actualL
-            Desc : Actuall Spacing between the model with reference to the screen size
-        -->
-            <xsl:variable name="tempL">
-                <xsl:if test="$component1_w &gt; 1200">
-                    <xsl:value-of select="50 + ($perdiff_w * 50)"/>
-                </xsl:if>
-                <xsl:if test="$component1_w &lt; 1200">
-                    <xsl:value-of select="50 - ($perdiff_w * 50)"/>
-                </xsl:if>               
-            </xsl:variable>
-            
-            <xsl:variable name="actualL">
-                <xsl:if test="$tempW >= 100">
-                    <xsl:value-of select="100"/>
-                </xsl:if>
-                <xsl:if test="$tempW &lt; 100">
-                    <xsl:value-of select="$tempL"/>
-                </xsl:if>
-            </xsl:variable>
-            
+        
 			<xsl:variable name="instancecount">
-			    <xsl:value-of select="count(msd/instance)"/>
+			    <xsl:value-of select="count($param_msd/instance)"/>
 			</xsl:variable>
 			 
 			 <!--
@@ -265,7 +173,7 @@
 		    </xsl:variable>
 		    
 		    <xsl:variable name="model_coordinates">
-		        <xsl:for-each select="msd/instance">
+		        <xsl:for-each select="($param_msd/instance)">
 		            <rec>
 		                <xsl:attribute name="stateid">
 		                    <xsl:value-of select="@id"/>
@@ -295,7 +203,7 @@
 		                    <xsl:value-of select="$actualW"/>
 		                </xsl:attribute>
 		                <xsl:attribute name="event_count">
-		                    <xsl:value-of select="count(msd/event)"/>
+		                    <xsl:value-of select="count($param_msd/event)"/>
 		                </xsl:attribute>
 		            </rec>	            
 		        </xsl:for-each>
@@ -349,7 +257,7 @@
 		    </xsl:for-each>
 		    
         <!-- Marker -->
-		    <xsl:for-each select="./marker">
+            <xsl:for-each select="$param_msd/marker">
 		        <xsl:variable name="id4" select="@id"> </xsl:variable>
 		        
 		        <xsl:variable name="stroke-width" select="@sw"> </xsl:variable>
@@ -372,13 +280,13 @@
         
             <!-- Messages -->
             <xsl:variable name="message_count">
-                <xsl:value-of select="count(msd/event)"></xsl:value-of>
+                <xsl:value-of select="count($param_msd/event)"></xsl:value-of>
             </xsl:variable>
 		    
 		    <xsl:variable name="event_count">
-		        <xsl:value-of select="count(msd/event)"></xsl:value-of>
+		        <xsl:value-of select="($end_filter - $start_filter)"></xsl:value-of>
 		    </xsl:variable>
-		    
+            
 		    <xsl:variable name="working_H">
 		        <xsl:value-of select="($component1_h div 2) div ( $event_count +1)"></xsl:value-of>
 		    </xsl:variable>
@@ -442,7 +350,7 @@
 		  
             <!-- Testing new Logic uncomment later-->
             <xsl:for-each
-                select="msd/event[ (@sequence_number &lt; $end_filter) and (@sequence_number &gt; $start_filter)]">
+                select="$param_msd/event[ (@sequence_number &lt; $end_filter) and (@sequence_number &gt; $start_filter)]">
                 <xsl:variable name="id" select="@id"/>
                 <xsl:variable name="Sid" select="@srcInstanceId"/>
                 <xsl:variable name="Did" select="@dstInstanceId"/>
@@ -450,8 +358,8 @@
                 <xsl:variable name="event_type" select="@eventType"/>
                 <xsl:variable name="name" select="@name"/>
                 <xsl:variable name="descritpion" select="@description"/>
-                <xsl:variable name="sequence" select="@sequence_number"/>
-
+                <xsl:variable name="sequence" select="(@sequence_number )"/>
+                <xsl:variable name="seq_position" select="(@sequence_number - $start_filter)"/>
                 <xsl:if test="($event_type='MESSAGE')">
 
 
@@ -477,7 +385,7 @@
                             <xsl:for-each select="$model_coordinates/*">
                                 <xsl:if test="@stateid=$Sid">
                                     <xsl:value-of
-                                        select="@py + ($actualH) + ($working_H * ($sequence))"/>
+                                        select="@py + ($actualH) + ($working_H * ($seq_position))"/>
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:variable>
@@ -505,6 +413,8 @@
                             <xsl:with-param name="marker" select="$marker"/>
                             <xsl:with-param name="id" select="concat('Message_',$id)"/>
                             <xsl:with-param name="seq_num" select="$sequence"/>
+                            <xsl:with-param name="start_filter" select="$start_filter"/>
+                            
                         </xsl:call-template>
                     </xsl:if>
 
@@ -522,7 +432,7 @@
                             <xsl:for-each select="$model_coordinates/*">
                                 <xsl:if test="@stateid=$Sid">
                                     <xsl:value-of
-                                        select="@py + ($actualH) + ($working_H * ($sequence ))"/>
+                                        select="@py + ($actualH) + ($working_H * ($seq_position))"/>
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:variable>
@@ -557,7 +467,7 @@
                             <xsl:for-each select="$model_coordinates/*">
                                 <xsl:if test="@stateid=$Did">
                                     <xsl:value-of
-                                        select="@py + ($actualH) + ($working_H * ($sequence))"/>
+                                        select="@py + ($actualH) + ($working_H * ($seq_position))"/>
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:variable>
@@ -617,7 +527,7 @@
                     <xsl:variable name="sy">
                         <xsl:for-each select="$model_coordinates/*">
                             <xsl:if test="@stateid=$Src_Inst_id">
-                                <xsl:value-of select="@py + ($actualH) + ($working_H * $sequence)"/>
+                                <xsl:value-of select="@py + ($actualH) + ($working_H * $seq_position)"/>
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:variable>
@@ -778,8 +688,8 @@
         <xsl:param name="decription"/>
         <xsl:param name="seq_num"/>
         <xsl:param name="name"/>
-        
-        <xsl:variable name="temp_name" select="concat($seq_num,'.')"/>
+        <xsl:param name="start_filter"/>
+        <xsl:variable name="temp_name" select="concat($seq_num ,'.')"/>
         <text id="{$id1}" style="font-size:20;font-style:normal;fill:#000000;"
             onmouseover="show(evt, '{$id2}')" onmouseout="hide(evt, '{$id2}')" x="{$x + 10}" y="{$y}">  <xsl:value-of select="concat($temp_name,$name)"/>
         </text>
@@ -837,7 +747,7 @@
         <xsl:param name="marker"/>
         <xsl:param name="name"/>
         <xsl:param name="seq_num"/>
-       
+        <xsl:param name="start_filter"/>
         
         
         <xsl:variable name="sx">
@@ -871,7 +781,7 @@
             <xsl:with-param name="decription" select="$description"/>
             <xsl:with-param name="name" select="$name"/>
             <xsl:with-param name="seq_num" select="$seq_num"/>
-            
+            <xsl:with-param name="start_filter" select="$start_filter"/>
         </xsl:call-template>
         
         

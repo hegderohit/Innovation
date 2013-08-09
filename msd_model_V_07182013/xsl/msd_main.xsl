@@ -5,348 +5,216 @@
     xmlns:func="http://innovation3g.com"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     exclude-result-prefixes="xs func">
-    
-   
+     
     <xsl:output name="msd-format" method="xml" version="1.0" indent="yes" omit-xml-declaration="yes"/>
-        
     
     <xsl:include href="msd_transformation.xsl"/>
+    
+    
+    <!-- 
+        This is the msd_main.xsl file.
+        Input : Takes the screen size P(x,y) H and W 
+                Maximum Size of Instance Model i.e, MaxH, MaxW and MaxL
+                Filter Variable (Sequence filter / Instance Filter)
+        Output: Creates Multiple SVG files which is either Sequence filtered or Instance
+        Includes : msd_transforamtion.xsl
         
+        Transformation Logic :
+                1) Auto Sizing the modles
+                    -> Based on the Screen Size, the size of instances are calculated
+                    -> Variables actualL,actaulW and actualL is set.
+                    -> Maximum Number of events that can be placed on the screen is fixed.
+                    -> Variable containerEventsCount is set.
+                2) Generating Multiple output files
+                    -> Get the  MSD   context  
+                    -> Define a output format name= "msd-format"
+                    -> Determine the  maximum  number of  events  per  container  : $containerEventsCount 
+                    -> Determine the number of events in the  MSD  : $msdEventsCount
+                    -> Determine the number of  display  containers ( svg files ) : $countDisplayContainers
+                         
+                3) Calling the msd_transformation in a loop        
+        		    -> now create  a loop, in each  loop  determine the start and  end  sequence number 
+                    -> Create file name dynamicaaly every time. : $filename
+                    
+                        <xsl:result-document href="{$fileName}" format="msd-format">
+				    		 for-each ( 1 to 	$countDisplayContainers) 
+        			              
+        			              startSeqeunce = ( position -1)*$containerEventsCount 
+        			              endSeqeunce = $startSeqeunce + $containerEventsCount
+        			              
+        			              Call-template with the params
+        			              
+				    		  end for
+				    	</xsl:result-document>
+                                         		  
+    -->
+    
+   
     <xsl:template match="msd">
         
-        <xsl:variable name="maxEvent" select="2"/>
+        <xsl:param name="component1_px" select="5"/>
+        <xsl:param name="component1_py" select="5"/>
+        <xsl:param name="component1_w" select="1500"/>
+        <xsl:param name="component1_h" select="1200"/>
+        <xsl:param name="maxW" select="240"/>
+        <xsl:param name="maxH" select="200"/>
+        <xsl:param name="maxL" select="150"/>
         
-        <xsl:variable name="event_count">
+        
+        
+        <!-- Auto ResizeLogic -->
+        <xsl:variable name="perdiff_w">
+            <xsl:if test="$component1_w >= 1200">
+                <xsl:value-of select="($component1_w - 1200) div 1200"/>
+            </xsl:if>
+            <xsl:if test="$component1_w &lt; 1200">
+                <xsl:value-of select="(1200 - $component1_w) div 1200"/>
+            </xsl:if>              
+        </xsl:variable>
+        
+        <xsl:variable name="perdiff_h">
+            <xsl:if test="$component1_h >= 1000">
+                <xsl:value-of select="($component1_w - 1000) div 1000"/>
+            </xsl:if>
+            <xsl:if test="$component1_w &lt; 1000">
+                <xsl:value-of select="(1000 - $component1_w) div 1000"/>
+            </xsl:if>               
+        </xsl:variable>
+              
+        <!--
+            Type : Variable
+            Name : actualW
+            Desc : Actuall width of the model with reference to the screen size
+        -->
+        <xsl:variable name="tempW">
+            <xsl:if test="$component1_w >= 1200">
+                <xsl:value-of select="(140) + (140 * $perdiff_w)"/>
+            </xsl:if>
+            <xsl:if test="$component1_w &lt; 1200">
+                <xsl:value-of select="(140) - (140 * $perdiff_w)"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:variable name="actualW">
+            <xsl:if test="$tempW >= $maxW">
+                <xsl:value-of select="$maxW"/>
+            </xsl:if>
+            <xsl:if test="$tempW &lt; $maxW">
+                <xsl:value-of select="$tempW"/>
+            </xsl:if>   
+            
+        </xsl:variable>
+        <!--
+            Type : Variable
+            Name : actualH
+            Desc : Actuall height of the model with reference to the screen size
+        -->
+        <xsl:variable name="temph">
+            <xsl:if test="$component1_h > 1000">
+                <xsl:value-of select="(100) + (100 * $perdiff_w)"/>
+            </xsl:if>
+            <xsl:if test="$component1_h &lt; 1000">
+                <xsl:value-of select="(100) - (100 * $perdiff_w)"/>
+            </xsl:if>
+        </xsl:variable>
+        
+        <xsl:variable name="actualH">
+            <xsl:if test="$temph >= $maxH">
+                <xsl:value-of select="$maxH"/>
+            </xsl:if>
+            <xsl:if test="$temph &lt; $maxH">
+                <xsl:value-of select="$temph"/>
+            </xsl:if>   
+        </xsl:variable>
+        <!--
+            Type : Variable
+            Name : actualL
+            Desc : Actuall Spacing between the model with reference to the screen size
+        -->
+        <xsl:variable name="tempL">
+            <xsl:if test="$component1_w &gt; 1200">
+                <xsl:value-of select="50 + ($perdiff_w * 50)"/>
+            </xsl:if>
+            <xsl:if test="$component1_w &lt; 1200">
+                <xsl:value-of select="50 - ($perdiff_w * 50)"/>
+            </xsl:if>               
+        </xsl:variable>
+        
+        <xsl:variable name="actualL">
+            <xsl:if test="$tempW >= 100">
+                <xsl:value-of select="100"/>
+            </xsl:if>
+            <xsl:if test="$tempW &lt; 100">
+                <xsl:value-of select="$tempL"/>
+            </xsl:if>
+        </xsl:variable>
+        
+        <!-- Filter Variables decides on what factor the svg must be filtered -->
+        <xsl:variable name="filter">
+            <sequence enabled="true" start_sequence="1" end_sequence="5"/>
+            <instance enabled="false">
+                <instance id="rrc"/>
+                <instance id="MAC"/>
+                <instance id="enodeb"/>
+            </instance>
+        </xsl:variable>
+        
+        <xsl:variable name="tempcontainerEventsCount">
+            <xsl:if test="$component1_h &gt; 1000">
+                <xsl:value-of select="6 + ($perdiff_w * 6)"/>
+            </xsl:if>
+            <xsl:if test="$component1_h &lt; 1000">
+                <xsl:value-of select="6 - ($perdiff_w * 6)"/>
+            </xsl:if>      
+        </xsl:variable>
+        
+        
+        <!-- The Maximum number of EVents inside the container formuale goes in here -->  
+        <xsl:variable name="containerEventsCount">
+            <xsl:if test="$tempcontainerEventsCount >= 6">
+                <xsl:value-of select="6"/>
+            </xsl:if>
+            <xsl:if test="$tempcontainerEventsCount &lt; 6">
+                <xsl:value-of select="$tempcontainerEventsCount"/>
+            </xsl:if>
+        </xsl:variable>
+        
+        <xsl:variable name="msdEventsCount">
             <xsl:value-of select="count(event)"/>
         </xsl:variable>
         
-        <xsl:variable name="working_filterH">
-            <xsl:value-of select="round($event_count div $maxEvent)"/>
+        <xsl:variable name="countDisplayContainers">
+            <xsl:value-of select="round($msdEventsCount div $containerEventsCount)"/>
         </xsl:variable>
         
-        <xsl:result-document href="msd_1.svg" format="msd-format">
-            <xsl:call-template name="process_fsm">    
-                <xsl:with-param name="component1_px" select="5"/>
-                <xsl:with-param name="component1_py" select="5"/>
-                <xsl:with-param name="component1_w" select="1500"/>
-                <xsl:with-param name="component1_h" select="1200"/>
-                <!-- 
-                    Parametrs Defining the Upper limit for model size
-                -->
-                <xsl:with-param name="maxW" select="240"/>
-                <xsl:with-param name="maxH" select="200"/>
-                <xsl:with-param name="maxL" select="150"/>
-                <xsl:with-param name="start_filter" select="0"/>
-                <xsl:with-param name="end_filter" select="$working_filterH + 1"/>
-            </xsl:call-template>
+        <xsl:variable name="currentMsd" select="."/>
+        
+
+        <xsl:for-each select="( 1 to $countDisplayContainers)">
             
-        </xsl:result-document>
-        
-        
-        
-        
-       <!-- <xsl:for-each select="msd">
-        <xsl:if test="position() &lt; 3 ">
-        <xsl:variable name="fileName" select="concat('msd_',position() + 1,'.svg')"/>
-       --> 
-        <xsl:result-document href="msd_3.svg" format="msd-format">
-            <xsl:call-template name="process_fsm">
+            <xsl:variable name="filename" select="concat('msd_',position(),'.svg')"/>
+            
+            <xsl:result-document href="{$filename}" format="msd-format">           
                 
-                <xsl:with-param name="component1_px" select="5"/>
-                <xsl:with-param name="component1_py" select="5"/>
-                <xsl:with-param name="component1_w" select="1500"/>
-                <xsl:with-param name="component1_h" select="1200"/>
-                <!--
-                    Parametrs Defining the Upper limit for model size
-                -->
-                <xsl:with-param name="maxW" select="240"/>
-                <xsl:with-param name="maxH" select="200"/>
-                <xsl:with-param name="maxL" select="150"/>
-                <xsl:with-param name="start_filter" select="3"/>
-                <xsl:with-param name="end_filter" select="6"/>
-            </xsl:call-template>
-            
-        </xsl:result-document>
-       <!-- </xsl:if>
-        </xsl:for-each>
-    --></xsl:template>
-    
-    
-   <!-- <xsl:template name="model_state">
-        <xsl:param name="name"/>
-        <xsl:param name="text_description"/>
-        <xsl:param name="text_id" />
-        <xsl:param name="px"/>
-        <xsl:param name="py"/>
-        <xsl:param name="width"/>
-        <xsl:param name="height"/>
-        <xsl:param name="stateid"/>
-        <xsl:param name="stroke-width"/>
-        <xsl:param name="stroke-format"/>
-        <xsl:param name="stroke-color"/>
-        <xsl:param name="fill-opacity"/>
-        <xsl:param name="fill"/>
-        
-        
-        <xsl:call-template name="rect">
-            
-            <xsl:with-param name="px" select="$px"/>
-            <xsl:with-param name="py" select="$py"/>
-            <xsl:with-param name="width" select="$width"/>
-            <xsl:with-param name="height" select="$height"/>
-            <xsl:with-param name="stateid" select="$stateid"/>
-            <xsl:with-param name="stroke-width" select="$stroke-width"/>
-            <xsl:with-param name="stroke-format" select="$stroke-format"/>
-            <xsl:with-param name="stroke-color" select="$stroke-color"/>
-            <xsl:with-param name="fill-opacity" select="$fill-opacity"/>
-            <xsl:with-param name="fill" select="$fill-opacity"/>
-            
-            
-        </xsl:call-template>
-        
-        
-        <xsl:call-template name="text">
-            <xsl:with-param name="id1" select="concat('Desc_',$stateid)"/>
-            <xsl:with-param name="id2" select="concat('DescHide_',$stateid)"/>
-            <xsl:with-param name="x" select="$px + 15"/>
-            <xsl:with-param name="y" select="$py + ($height div 2)"/>
-            <xsl:with-param name="name" select="$name"/>
-            
-            <xsl:with-param name="h" select="0.5 * $height"/>
-            <xsl:with-param name="w" select=" $width - 10"/>
-        </xsl:call-template>
-        
-        
-        <xsl:call-template name="text">
-            <xsl:with-param name="id1" select="concat('Name_',$stateid)"/>
-            <xsl:with-param name="id2" select="concat('NameHide_',$stateid)"/>
-            <xsl:with-param name="x" select="$px + 10"/>
-            <xsl:with-param name="y" select="$py + (($height * 3) div 4)"/>
-            <xsl:with-param name="h" select="0.5 * $height"/>
-            <xsl:with-param name="w" select=" $width - 10"/>
-            <xsl:with-param name="decription" select="$text_description"/>
-            
-        </xsl:call-template>
+                <xsl:variable name="startSeqeunce" select="(position() - 1) * $containerEventsCount "/>
+                <xsl:variable name="endSeqeunce" select="$startSeqeunce + $containerEventsCount" />
+                <xsl:call-template name="process_msd">
+                    
+                    <xsl:with-param name="component1_px" select="$component1_px"/>
+                    <xsl:with-param name="component1_py" select="$component1_py"/>
+                    <xsl:with-param name="component1_w" select="$component1_w"/>
+                    <xsl:with-param name="component1_h" select="$component1_h"/>                 
+                    <xsl:with-param name="actualL" select="$actualL"/>
+                    <xsl:with-param name="actualH" select="$actualH"/>
+                    <xsl:with-param name="actualW" select="$actualW"/>
+                    <xsl:with-param name="start_filter" select="$startSeqeunce"/>
+                    <xsl:with-param name="end_filter" select="$endSeqeunce"/>
+                    <xsl:with-param name="param_msd" select="$currentMsd"/>
+                </xsl:call-template>
+                
+            </xsl:result-document>
+        </xsl:for-each>   
         
     </xsl:template>
     
-    
-    
-    <xsl:template name="rect">
-        
-        <xsl:param name="stateid"/>
-        <xsl:param name="stroke-width"/>
-        <xsl:param name="stroke-format"/>
-        <xsl:param name="stroke-color"/>
-        <xsl:param name="fill-opacity"/>
-        <xsl:param name="fill"/>
-        <xsl:param name="px"/>
-        <xsl:param name="py"/>
-        <xsl:param name="width"/>
-        <xsl:param name="height"/>
-        
-        <rect width="{$width}" height="{$height}" x="{$px}" y="{$py}" stroke-width="1"
-            stroke="{$stroke-color}" fill="none" id="{$stateid}" />
-        
-        
-        
-    </xsl:template>
-    
-    
-    <xsl:template name="text">
-        
-        <xsl:param name="id1"/>
-        <xsl:param name="id2"/>
-        <xsl:param name="x"/>
-        <xsl:param name="y"/>
-        <xsl:param name="h"/>
-        <xsl:param name="w"/>
-        <xsl:param name="decription"/>
-        <xsl:param name="seq_num"/>
-        <xsl:param name="name"/>
-        
-        <xsl:variable name="temp_name" select="concat($seq_num,'.')"/>
-        <text id="{$id1}" style="font-size:20;font-style:normal;fill:#000000;"
-            onmouseover="show(evt, '{$id2}')" onmouseout="hide(evt, '{$id2}')" x="{$x + 10}" y="{$y}">  <xsl:value-of select="concat($temp_name,$name)"/>
-        </text>
-        <g id="{$id2}" visibility="hidden" >
-            
-            <text x="{$x + 10}" y="{$y+5}" font-size="12" font-family="Arial" fill="black">Hidden Text....</text>
-        </g>
-        
-    </xsl:template>
-    
-    
-    
-    <xsl:template name="model_Sequence">
-        <xsl:param name="line_id" />
-        <xsl:param name="px" />
-        <xsl:param name="py" />
-        <xsl:param name="width"/>
-        <xsl:param name="height" />
-        <xsl:param name="length" />
-        <xsl:param name="stroke-width" />
-        <xsl:param name="stroke-format" />
-        <xsl:param name="stroke-color" />
-        <xsl:param name="fill-opacity"/>
-        <xsl:param name="fill" />
-        
-        
-        <xsl:variable name="sx">
-            <xsl:value-of select="$px"/>		
-        </xsl:variable>
-        
-        <xsl:variable name="sy">
-            <xsl:value-of select="$py"/>   					
-        </xsl:variable>
-        
-        <xsl:variable name="ex">
-            <xsl:value-of select="($px)"/>
-        </xsl:variable>
-        
-        <xsl:variable name="ey">
-            <xsl:value-of select="($py + ($length div 2))"/>			
-        </xsl:variable>
-        
-        <line x1="{$sx}" y1="{$sy}" x2="{$ex}" y2="{$ey}" stroke="{$stroke-color}"
-            id="{$line_id}" />
-        
-    </xsl:template>
-    
-    <xsl:template name="model_Message">
-        <xsl:param name="description"/>
-        <xsl:param name="px" />
-        <xsl:param name="py" />
-        <xsl:param name="w" />
-        <xsl:param name="h" />
-        <xsl:param name="id" />
-        <xsl:param name="marker"/>
-        <xsl:param name="name"/>
-        <xsl:param name="seq_num"/>
-        
-        
-        
-        <xsl:variable name="sx">
-            <xsl:value-of select="$px"/>
-        </xsl:variable>
-        
-        <xsl:variable name="ex">
-            <xsl:value-of select="$w + $px"/>
-        </xsl:variable>
-        
-        <line x1="{$sx}" y1="{$py}" x2="{$ex}" y2="{$py}" id="{$id}" stroke="black" marker-end="url(#{$marker})"/>
-        
-        <xsl:variable name="tempx">
-            <xsl:choose>
-                <xsl:when test="$ex &gt; $sx">
-                    <xsl:value-of select="$sx + (($ex - $sx) div 4)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="$sx - ((($sx - $ex) div 2))"/>
-                </xsl:otherwise>
-            </xsl:choose>
-            
-            
-        </xsl:variable>
-        
-        <xsl:call-template name="text">
-            <xsl:with-param name="id1" select="concat('MessDesc_',$id)"/>
-            <xsl:with-param name="id2" select="concat('MessDescHide_',$id)"/>
-            <xsl:with-param name="x" select="$tempx"/>
-            <xsl:with-param name="y" select="$py - 5"/>
-            <xsl:with-param name="decription" select="$description"/>
-            <xsl:with-param name="name" select="$name"/>
-            <xsl:with-param name="seq_num" select="$seq_num"/>
-            
-        </xsl:call-template>
-        
-        
-    </xsl:template>
-    
-    <xsl:template name="path_marker">
-        <xsl:param name="id4"/>
-        <xsl:param name="stroke-width"/>
-        <xsl:param name="stroke-format"/>
-        <xsl:param name="stroke-color"/>
-        <xsl:param name="fill-opacity"/>
-        <xsl:param name="fill"/>
-        <marker orient="auto" id="{$id4}" viewBox="-1 -4 10 8" markerWidth="20" markerHeight="10"
-            color="{$stroke-color}">
-            <path d="M 0 0 L -8 8 L -8 -8 Z" fill="{$fill}" stroke="{$stroke-color}"
-                stroke-width="{$stroke-width}"/>
-        </marker>
-        
-        
-    </xsl:template>
-    
-    <xsl:template name="model_Event">
-        <xsl:param name="px" />
-        <xsl:param name="py" />
-        <xsl:param name="marker"/>
-        <xsl:param name="h" />
-        <xsl:param name="w" />
-        <xsl:param name="id" />
-        <xsl:param name="description"/>
-        <xsl:param name="name"/>
-        <xsl:param name="seq_num"/>
-        
-        <xsl:variable name="tempx">
-            <xsl:value-of select="$px + 3"/>      
-        </xsl:variable>
-        
-        <xsl:call-template name="text">
-            <xsl:with-param name="id1" select="concat('MessDesc_',$id)"/>
-            <xsl:with-param name="id2" select="concat('MessDescHide_',$id)"/>
-            <xsl:with-param name="x" select="$tempx"/>
-            <xsl:with-param name="y" select="$py - 5"/>
-            <xsl:with-param name="decription" select="$description"/>
-            <xsl:with-param name="seq_num" select="$seq_num"/>
-            <xsl:with-param name="name" select="$name"/>
-        </xsl:call-template>
-        
-        
-        <xsl:call-template name="line">
-            <xsl:with-param name="px" select="$px"/>
-            <xsl:with-param name="py" select="$py"/>
-            <xsl:with-param name="w" select="($w div 2)"/>
-            <xsl:with-param name="h" select="0"/>
-            <xsl:with-param name="id" select="concat('Event1_',$id)"/>
-        </xsl:call-template>
-        
-        <xsl:call-template name="line">
-            <xsl:with-param name="px" select="$px + ($w div 2)"/>
-            <xsl:with-param name="py" select="$py"/>
-            <xsl:with-param name="w" select="0"/>
-            <xsl:with-param name="h" select="(0.6 * $h)"/>
-            <xsl:with-param name="id" select="concat('Event2_',$id)"/>
-        </xsl:call-template>
-        
-        <xsl:call-template name="line">
-            <xsl:with-param name="px" select="$px + ($w div 2)"/>
-            <xsl:with-param name="py" select="$py + (0.6 * $h)"/>
-            <xsl:with-param name="w" select="0 - ($w div 4)"/>
-            <xsl:with-param name="h" select="0"/>
-            <xsl:with-param name="marker" select="$marker"/>
-            <xsl:with-param name="id" select="concat('Event3_',$id)"/>
-        </xsl:call-template>
-    </xsl:template>
-    
-    <xsl:template name="line">
-        <xsl:param name="px"/>
-        <xsl:param name="py" />
-        <xsl:param name="w" />
-        <xsl:param name="h" />
-        <xsl:param name="id" />
-        <xsl:param name="marker"/>
-        
-        <line x1="{$px}" y1="{$py}" x2="{$px + $w}" y2="{$py + $h}" id="{$id}" stroke="black" marker-end="url(#{$marker})"/>
-        
-    </xsl:template>
-    -->
-    
-    
-    
-    
-    
-        
-    </xsl:stylesheet>
+
+</xsl:stylesheet>
