@@ -54,7 +54,7 @@
         <text id="{$id1}" style="font-size:20;font-style:normal;fill:#000000;"
             onmouseover="show(evt, '{$id2}')" onmouseout="hide(evt, '{$id2}')" x="{$x}"
             y="{$y}">
-            NAME
+            <xsl:value-of select="$name"/>
         </text>
         <g id="{$id2}" visibility="hidden">
             

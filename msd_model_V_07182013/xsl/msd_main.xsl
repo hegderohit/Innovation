@@ -186,7 +186,7 @@
         
         <xsl:variable name="currentMsd" select="."/>
         
-        <!--  -->
+        <!-- Loop to print out the models in different files.tere -->
         <xsl:for-each select="( 1 to $countDisplayContainers)">
             
             <xsl:variable name="filename" select="concat('msd_',position(),'.svg')"/>
