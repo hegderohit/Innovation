@@ -2,7 +2,8 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns="http://www.w3.org/2000/svg" xmlns:func="http://innovation3g.com"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    exclude-result-prefixes="xs func">
+    exclude-result-prefixes="xs func"
+    xmlns:gsfm="http://www.innovation3g.com/gsf/model">
     
     <xsl:output method="xml" version="1.0" indent="yes" omit-xml-declaration="yes"/>
     
@@ -21,24 +22,35 @@
         <xsl:param name="description"/>
         <xsl:param name="id"/>
         
-        
+        <xsl:variable name="curve_x" select="($w div 4)"></xsl:variable>
         <xsl:variable name="Id" select="concat('db_',$id)"/>
         
         <xsl:variable name="curve_ht" select="$h div 3"/>
+        <xsl:variable name="x" select="$px + ($w div 4)"></xsl:variable>
         
-        <line x1="{$px}" y1="{$py}" x2="{$px + $w}" y2="{$py}" stroke-width="1" stroke="black"
-            fill="none"/>
         
-        <line x1="{$px}" y1="{$py + $h}" x2="{$px + $w}" y2="{$py + $h}" stroke-width="1"
-            stroke="black" fill="none"/>
+        <g gsfm:cid="{$name}" gsfm:ciid="{concat('ProcessGroup_',$id)}"
+            gsfm:cns="http://www.innovation3g.com/gsf" gsfm:ct="{$name}" gsfm:pcId=""
+            gsfm:pcns="http://www.innovation3g.com/gsf">
+            
         
-        <path
+            <line x1="{$x}" y1="{$py}" x2="{$x + ($w div 2)}" y2="{$py}" stroke-width="1" stroke="black"
+                fill="none"/>
+            
+       
+            <line x1="{$x}" y1="{$py + $h}" x2="{$x + ($w div 2)}" y2="{$py + $h}" stroke-width="1"
+                stroke="black" fill="none"/>
+            <path
+                d="M{$x} {$py} C {$x - $curve_x} {$py + $curve_ht}, {$x - $curve_x} {$py +(2 * $curve_ht)}, {$x} {$py + $h}"
+                stroke="black" fill="transparent"/>
+            
+       <!-- <path
             d="M{$px} {$py} C {$px -40} {$py + $curve_ht}, {$px - 40} {$py +(2 * $curve_ht)}, {$px} {$py + $h}"
             stroke="black" fill="transparent"/>
-        
+        -->
       
         
-        <ellipse ry="{$h div 2}" rx="20" cx="{$px + $w}"
+        <ellipse ry="{$h div 2}" rx="20" cx="{$x + ($w div 2)}"
             cy="{$py + ($h div 2)}" stroke-width="1" stroke="black" fill="none" id="{$Id}"/>
         
         <xsl:call-template name="database_text">
@@ -52,7 +64,7 @@
             <xsl:with-param name="description" select="$description"/>
         </xsl:call-template>
         
-        
+        </g>
     </xsl:template>
     
     <xsl:template name="database_text">
