@@ -4,8 +4,9 @@
     exclude-result-prefixes="xs"
     version="2.0">
     
+    <xsl:output name="msd-format" method="xml" version="1.0" indent="yes" omit-xml-declaration="yes"/>
     
-    <xsl:template match="/">
+    <xsl:template match="/" >
 
         <xsl:variable name="attributes_body"> 
             <xsl:attribute name="chapter"><xsl:value-of select="1234"/></xsl:attribute> 
@@ -34,7 +35,16 @@
         </xsl:message>
         
         
-       
+        <xsl:result-document href="temp.xml" format="msd-format">
+        <xsl:for-each select="1 to 3">
+        
+            
+            <Position>
+                <xsl:value-of select="position()"/>
+            </Position>
+        
+        </xsl:for-each>
+        </xsl:result-document>
         
     </xsl:template>
     

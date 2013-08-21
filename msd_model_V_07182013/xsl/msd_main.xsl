@@ -167,10 +167,7 @@
                 <instance id="enodeb"/>
             </instance>
         </xsl:variable>
-        
-      
-        
-        
+           
         <!-- The Maximum number of EVents inside the container formuale goes in here -->  
         <xsl:variable name="containerEventsCount">
            <xsl:value-of select="$model_seq_length div $event_spacing"/>

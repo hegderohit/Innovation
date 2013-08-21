@@ -39,12 +39,12 @@
         </xsl:call-template>
         
         
-        <line x1="{$px}" y1="{$py}" x2="{$px + $w}" y2="{$py}" stroke-width="1" stroke="black" fill="none" id="{$Id}" marker-end="url(#{$markerId})"/>
+        <line x1="{$px}" y1="{$py}" x2="{$w}" y2="{$h}" stroke-width="1" stroke="black" fill="none" id="{$Id}" marker-end="url(#{$markerId})"/>
         
         
         
         
-        <xsl:call-template name="component_link_text">
+       <!-- <xsl:call-template name="component_link_text">
             <xsl:with-param name="id1" select="concat('LinkName_',$id)"/>
             <xsl:with-param name="id2" select="concat('LinkHidden_',$id)"/>
             <xsl:with-param name="x" select="($px)"/>
@@ -54,7 +54,7 @@
             <xsl:with-param name="name" select="$name"/>
             <xsl:with-param name="description" select="$description"/>
         </xsl:call-template>
-        
+        -->
         
     </xsl:template>
     

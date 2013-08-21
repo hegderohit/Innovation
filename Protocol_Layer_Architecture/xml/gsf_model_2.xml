@@ -47,7 +47,7 @@
 	
 	
 	<gsfComponent scid="6" scnm="" scd="link6">
-		<SystemComponentLink  sctind="LINK" srcCid="1" dstCid="2"/>
+		<SystemComponentLink  sctind="LINK" srcCid="4" dstCid="2"/>
 	</gsfComponent>
 	<gsfComponent scid="7" scnm="" scd="link7">
 		<SystemComponentLink  sctind="LINK" srcCid="2" dstCid="3"/>
@@ -56,6 +56,6 @@
 		<SystemComponentLink  sctind="LINK" srcCid="3" dstCid="4"/>
 	</gsfComponent>
 	<gsfComponent scid="9" scnm="" scd="link9">
-		<SystemComponentLink  sctind="LINK" srcCid="4" dstCid="1"/>
+		<SystemComponentLink  sctind="LINK" srcCid="4" dstCid="2"/>
 	</gsfComponent>
 </gsf>
