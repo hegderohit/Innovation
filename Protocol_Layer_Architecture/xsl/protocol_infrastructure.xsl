@@ -409,6 +409,14 @@ end for
                                 <xsl:attribute name="h">
                                     <xsl:value-of select="($subsystem_h - (2 * $spacing))"/>
                                 </xsl:attribute>
+                                <xsl:attribute name="side">
+                                    <xsl:if test="(position() mod 2) = 0">
+                                        <xsl:value-of select="1"/>
+                                    </xsl:if>
+                                    <xsl:if test="(position() mod 2) = 1">
+                                        <xsl:value-of select="2"/>
+                                    </xsl:if>
+                                </xsl:attribute>
                             </rec>
 
                         </xsl:for-each>
@@ -457,69 +465,7 @@ end for
     <xsl:template name="draw_component">
         <xsl:param name="component_properties"/>
 
-        <!--  <xsl:variable name="component_scid" select="@scid"/>
-        
-                        <xsl:variable name="component_name">
-                            <xsl:for-each
-                                select="$default_context/gsfComponent[@scid=$component_scid]">
-                                <xsl:value-of select="@scnm"/>
-                            </xsl:for-each>
-                        </xsl:variable>
-                        
-                        <xsl:variable name="component_type">
-                            <xsl:for-each
-                                select="$default_context/gsfComponent[@scid=$component_scid]/*">
-                                <xsl:value-of select="@sctind"/>
-                            </xsl:for-each>
-                        </xsl:variable>
-                        
-                        <xsl:variable name="component_description">
-                            <xsl:for-each
-                                select="$default_context/gsfComponent[@scid=$component_scid]">
-                                <xsl:value-of select="@scd"/>
-                            </xsl:for-each>
-                        </xsl:variable>
-                        
-                        <xsl:message> SCNM : <xsl:value-of select="$component_name"/> component_type
-                            : <xsl:value-of select="$component_type"/>
-                        </xsl:message>
-                        
-                        <xsl:variable name="component_px">
-                        
-                            <xsl:if test="(position() mod 2) = 0">
-                                <xsl:value-of
-                                    select="$subsystem_px +  ((($componentworking_width div 2)) - (($componentworking_width div 2) - $component_distane))"
-                                />
-                            </xsl:if>
-                            
-                            <xsl:if test="(position() mod 2) = 1">
-                                <xsl:value-of
-                                    select="$subsystem_px +  ((($componentworking_width div 2) + $componentworking_width) - (($componentworking_width div 2) - $component_distane))"
-                                />
-                            </xsl:if>
-                        </xsl:variable>
-                        
-                        <xsl:variable name="component_py">
-                        
-                            <xsl:if test="(position() mod 2) = 0">
-                                <xsl:value-of
-                                    select="$subsystem_py + ((((position() - (round(position() div 2) + 1)) * $componentworking_height) + ($componentworking_height div 2)) - (($componentworking_height div 2) - $component_distane))"
-                                />
-                            </xsl:if>
-                            
-                            <xsl:if test="(position() mod 2) = 1">
-                                <xsl:value-of
-                                    select="$subsystem_py + ((((position() - round(position() div 2) ) * $componentworking_height) + ($componentworking_height div 2)) - (($componentworking_height div 2) - $component_distane))"
-                                />
-                            </xsl:if>
-                        </xsl:variable>
-                        
-                        <xsl:variable name="subsystem_w"
-                            select="($componentworking_width - (2 * $component_distane))"/>
-                        <xsl:variable name="subsystem_h"
-                            select="($componentworking_height - (2 * $component_distane))"/>
-                            
-                            -->
+       
         <!--
      [TODO SINGLE VARIABLE LOGIC GOES IN HERE]
                         <xsl:element name="containerModelProperties">
@@ -613,69 +559,199 @@ end for
    <xsl:template name="draw_link">
        <xsl:param name="component_properties"/>
        <xsl:param name="context"/>
-       <xsl:variable name="link_count">
-           <xsl:value-of select="count($context/gsfComponent[contains(@scd,'link')])"></xsl:value-of>
-       </xsl:variable>
        
-       <xsl:message>
-           LINK ________ COunt : 
-           <xsl:for-each select="$context/gsfComponent/SystemComponentLink[@sctind='LINK']">
-               hii1
-               hii2
-               <xsl:variable name="src_id" select="./@srcCid"/>
+       
+      
+       
+      <!-- <xsl:message>
+          
+           <xsl:for-each select="$component_properties/*">
+                <xsl:variable name="id" select="./@baseid"/>
+                <xsl:variable name="linecount">
+                    <xsl:value-of
+                        select="count(($context/gsfComponent/SystemComponentLink[(@sctind='LINK') and (@srcCid=$id)]) |($context/gsfComponent/SystemComponentLink[(@sctind='LINK') and (@dstCid=$id)]))"
+                    /> </xsl:variable>
                
-               <xsl:variable name="sx">
-                 
-                   <xsl:for-each select="$component_properties/*">
-                       <xsl:if test="(./@baseid=$src_id)">
-                           hiii4
-                           <xsl:value-of select="./@x"/>
-                       </xsl:if>
+               
+               <xsl:variable name="output">
+                   <xsl:for-each
+                       select="($context/gsfComponent/SystemComponentLink[(@sctind='LINK') and (@srcCid=$id)])"> 
+                       
+                      <rec>
+                          <xsl:attribute name="link_id" select="../@scid"/>
+                          <xsl:attribute name="name" select="../@scnm"/>
+                           <xsl:attribute name="desc" select="30"/>
+                     </rec>
+                   </xsl:for-each>
+                   <xsl:for-each
+                       select="($context/gsfComponent/SystemComponentLink[(@sctind='LINK') and (@dstCid=$id)])"> 
+                       
+                       <rec>
+                           <xsl:attribute name="link_id" select="../@scid"/>
+                           <xsl:attribute name="name" select="../@scnm"/>
+                           <xsl:attribute name="desc" select="30"/>
+                       </rec>
                    </xsl:for-each>
                </xsl:variable>
                
-               <!--<xsl:value-of select="$src_id"/>-->
-               
+               -\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+               LINE COUNT : 
+               ID: <xsl:value-of select="$id"/>
+               link ID: <xsl:for-each select="$output/*">
+                   <xsl:value-of select="./@link_id"/>
+                       <xsl:value-of select="./@name"/>
+                   
+               </xsl:for-each>
+              
+               -\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
            </xsl:for-each>
+           
+               
        </xsl:message>
        
-       <xsl:for-each select="$context/gsfComponent/SystemComponentLink[@sctind='LINK']">
-           <xsl:variable name="id" select="./@scid"/>
-           <xsl:variable name="src_id" select="./@srcCid"/>
-           <xsl:variable name="dest_id" select="./@dstCid"/>
-           <xsl:variable name="name" select="./@scnm"/>
-           <xsl:variable name="desc" select="./@scd"/>
+      -->
+       <xsl:variable name="link_properties">
+       
+       <xsl:for-each select="$component_properties/*">
+           <xsl:variable name="position" select="position()"></xsl:variable>
+           <xsl:variable name="id" select="./@baseid"/>
            
-           <xsl:variable name="sx">
-               <xsl:for-each select="$component_properties/*">
-                   <xsl:if test="./@baseid=$src_id">
-                       <xsl:value-of select="./@x"/>
-                   </xsl:if>
-               </xsl:for-each>
-           </xsl:variable>
-           <xsl:variable name="ex">
-               <xsl:for-each select="$component_properties/*">
-                   <xsl:if test="./@baseid=$dest_id">
-                       <xsl:value-of select="./@x"/>
-                   </xsl:if>
-               </xsl:for-each>
-           </xsl:variable>
+           <xsl:variable name="linecount">
+               <xsl:value-of
+                   select="count(($context/gsfComponent/SystemComponentLink[(@sctind='LINK') and (@srcCid=$id)]) |($context/gsfComponent/SystemComponentLink[(@sctind='LINK') and (@dstCid=$id)]))"
+               /> </xsl:variable>        
+           <xsl:variable name="working_H">
+               <xsl:value-of select="(./@h div ($linecount + 1))"/>
+           </xsl:variable>         
+           <xsl:variable name="side" select="./@side"/>
+           <xsl:variable name="x" select="./@x"/>
+           <xsl:variable name="y" select="./@y"/>
+           <xsl:variable name="h" select="./@h"/>
+           <xsl:variable name="w" select="./@w"/>
+       
+            <xsl:for-each
+                select="($context/gsfComponent/SystemComponentLink[(@sctind='LINK') and (@srcCid=$id)])"> 
+               
+               <!-- <xsl:if
+                    test="($context/gsfComponent/SystemComponentLink[(@sctind='LINK') and (@srcCid=$id)])"> -->
+                        <rec>
+                            <xsl:attribute name="link_id" select="../@scid"/>
+                            <xsl:attribute name="name" select="../@scnm"/>
+                            <xsl:attribute name="desc" select="../@scd"/>
+
+                            <xsl:attribute name="sx">
+        
+                                    <xsl:if test="($side=1)">
+                                        <xsl:value-of select="$x + $w"/>
+                                    </xsl:if>
+                                    <xsl:if test="($side=2)">
+                                        <xsl:value-of select="$x"/>
+                                    </xsl:if>
+                                
+                            </xsl:attribute>
+
+                            <xsl:attribute name="sy" select="($y)+($working_H * position())"/>
+                            <xsl:attribute name="type" select="1"/>
+                        </rec>
+                
+         <!--       </xsl:if>-->
+            </xsl:for-each>
            
-           <xsl:variable name="sy">
-               <xsl:for-each select="$component_properties/*">
-                   <xsl:if test="./@baseid=$src_id">
-                       <xsl:value-of select="./@y"/>
-                   </xsl:if>
-               </xsl:for-each>
-           </xsl:variable>
-           <xsl:variable name="ey">
-               <xsl:for-each select="$component_properties/*">
-                   <xsl:if test="./@baseid=$dest_id">
-                       <xsl:value-of select="./@y"/>
-                   </xsl:if>
-               </xsl:for-each>
-           </xsl:variable>
+           <xsl:for-each
+               select="($context/gsfComponent/SystemComponentLink[(@sctind='LINK') and (@dstCid=$id)])"> 
+               
+               <!-- <xsl:if
+                    test="($context/gsfComponent/SystemComponentLink[(@sctind='LINK') and (@dstCid=$id)])"> 
+                    --><rec>
+                   <xsl:attribute name="link_id" select="../@scid"/>
+                   <xsl:attribute name="name" select="../@scnm"/>
+                   <xsl:attribute name="desc" select="../@scd"/>
+                        
+                        <xsl:attribute name="ex">
+                           
+                                <xsl:if test="($side=1)">
+                                    <xsl:value-of select="$x + $w"/>
+                                </xsl:if>
+                                <xsl:if test="($side=2)">
+                                    <xsl:value-of select="$x"/>
+                                </xsl:if>
+                            
+                        </xsl:attribute>                        
+                        <xsl:attribute name="ey" select="($y)+($working_H * position())"/>  
+                        <xsl:attribute name="type" select="2"/>
+                    </rec>      
+               <!-- </xsl:if>-->
+                
+
+            </xsl:for-each>
+             
+       </xsl:for-each>
+       </xsl:variable>
+       
+       
+       
+      <!-- <xsl:message>
            
+           
+           -\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-777777777777777-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+            
+           
+           link_properties: <xsl:for-each select="$link_properties/*">
+                        <xsl:value-of select="./@link_id"/>
+                        <xsl:value-of select="./@name"/>
+                        <xsl:value-of select="./@desc"/>
+                        <xsl:value-of select="./@sx"></xsl:value-of>
+                      </xsl:for-each>
+           -\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-7777777777777777777-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+           
+           
+       </xsl:message>
+       
+       -->
+      <xsl:for-each select="$context/gsfComponent/SystemComponentLink[@sctind='LINK']">
+           <xsl:variable name="id" select="../@scid"/>
+           <xsl:variable name="name" select="../@scnm"/>
+           <xsl:variable name="desc" select="../@scd"/>
+           
+          
+          <xsl:variable name="sx">
+              <xsl:for-each select="$link_properties/*"> 
+                  <xsl:if test="(./@link_id=$id) and(./@type=1)">
+                      <xsl:value-of select="./@sx"/>
+                  </xsl:if>		
+              </xsl:for-each>					
+          </xsl:variable>
+          
+          <xsl:variable name="sy">
+              <xsl:for-each select="$link_properties/*"> 
+                  <xsl:if test="(./@link_id=$id) and(./@type=1)">
+                      <xsl:value-of select="./@sy"/>
+                  </xsl:if>		
+              </xsl:for-each>					
+          </xsl:variable>
+                 
+          <xsl:variable name="ex">
+              <xsl:for-each select="$link_properties/*"> 
+                  <xsl:if test="(./@link_id=$id) and(./@type=2)">
+                      <xsl:value-of select="./@ex"/>
+                  </xsl:if>		
+              </xsl:for-each>					
+          </xsl:variable>
+          
+          <xsl:variable name="ey">
+              <xsl:for-each select="$link_properties/*"> 
+                  <xsl:if test="(./@link_id=$id) and(./@type=2)">
+                      <xsl:value-of select="./@ey"/>
+                  </xsl:if>		
+              </xsl:for-each>					
+          </xsl:variable>
+          
+          
+          
+          
+          
+          
+          
            <xsl:call-template name="component_link">
                <xsl:with-param name="px" select="$sx"/>
                <xsl:with-param name="py" select="$sy" />
@@ -688,7 +764,9 @@ end for
            
            
        </xsl:for-each>
-       
+
+   
+   
    </xsl:template>
    
    

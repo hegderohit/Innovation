@@ -6,8 +6,10 @@
 			<gsfComponent scid="2"/>
 			<gsfComponent scid="3"/>
 			<gsfComponent scid="4"/>
-			<gsfComponent scid="5"/>
 			
+			<gsfComponent scid="5"/>
+			<gsfComponent scid="12"/>
+			<gsfComponent scid="13"/>
 			<!--<gsfComponent scid="10" scnm="DB2" scd="local Datastore">
 				<SystemDataStore sctind="DATA_STORE">
 					
@@ -15,18 +17,7 @@
 			</gsfComponent>-->
 		</SystemEntity>
 		
-		<SystemEntity sctind="SYSTEM2">
-			<gsfComponent scid="2"/>
-			<gsfComponent scid="3"/>
-			
-			
-			
-			<!--<gsfComponent scid="10" scnm="DB2" scd="local Datastore">
-				<SystemDataStore sctind="DATA_STORE">
-					
-				</SystemDataStore>
-			</gsfComponent>-->
-		</SystemEntity>
+		
 	</gsfComponent>
 	
 	
@@ -40,6 +31,12 @@
 	<gsfComponent scid="4" scnm="Flow1" scd="information flow" >
 		<SystemFlow sctind="PROCESS"/>
 	</gsfComponent>
+	<gsfComponent scid="12" scnm="Flow1" scd="information flow" >
+		<SystemFlow sctind="PROCESS"/>
+	</gsfComponent>
+	<gsfComponent scid="13" scnm="Flow1" scd="information flow" >
+		<SystemFlow sctind="PROCESS"/>
+	</gsfComponent>
 	<gsfComponent scid="5" scnm="DB1" scd="data  store" >
 		<SystemDataStore sctind="DATA_STORE"/>
 	</gsfComponent>
@@ -47,15 +44,18 @@
 	
 	
 	<gsfComponent scid="6" scnm="" scd="link6">
-		<SystemComponentLink  sctind="LINK" srcCid="4" dstCid="2"/>
-	</gsfComponent>
-	<gsfComponent scid="7" scnm="" scd="link7">
 		<SystemComponentLink  sctind="LINK" srcCid="2" dstCid="3"/>
 	</gsfComponent>
-	<gsfComponent scid="8" scnm="" scd="link8">
+	<gsfComponent scid="7" scnm="" scd="link7">
 		<SystemComponentLink  sctind="LINK" srcCid="3" dstCid="4"/>
 	</gsfComponent>
-	<gsfComponent scid="9" scnm="" scd="link9">
+	<gsfComponent scid="8" scnm="" scd="link8">
 		<SystemComponentLink  sctind="LINK" srcCid="4" dstCid="2"/>
+	</gsfComponent>
+	<gsfComponent scid="9" scnm="" scd="link9">
+		<SystemComponentLink  sctind="LINK" srcCid="4" dstCid="3"/>
+	</gsfComponent>
+	<gsfComponent scid="10" scnm="" scd="link10">
+		<SystemComponentLink  sctind="LINK" srcCid="2" dstCid="12"/>
 	</gsfComponent>
 </gsf>
